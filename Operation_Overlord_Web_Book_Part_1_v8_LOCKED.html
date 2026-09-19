@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operation Overlord Web Book — Part 1 v8</title>
+<style>
+:root {
+  --navy:#123f62;
+  --navy-dark:#0b2c45;
+  --blue:#2f6e9d;
+  --paper:#f7f3e8;
+  --paper-2:#fffdf7;
+  --ink:#20272c;
+  --muted:#65717a;
+  --line:#c9c2b3;
+  --olive:#69745a;
+  --gold:#a77e39;
+  --success:#2e6a45;
+  --danger:#8a3f39;
+  --shadow:0 12px 30px rgba(30,36,40,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:#dedbd3;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
+}
+button{font:inherit}
+.page{
+  width:min(1150px, calc(100% - 28px));
+  margin:22px auto 50px;
+  background:var(--paper-2);
+  box-shadow:var(--shadow);
+  border:1px solid #cbc5b7;
+}
+.masthead{
+  padding:26px 48px 20px;
+  border-bottom:4px solid var(--navy);
+  background:linear-gradient(#fffdf8,#f7f2e7);
+}
+.series{
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:.78rem;
+  font-weight:700;
+  color:var(--muted);
+}
+.part-label{
+  margin-top:10px;
+  color:var(--blue);
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+h1{
+  margin:.2rem 0 .1rem;
+  color:var(--navy-dark);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2rem,4vw,3.45rem);
+  line-height:1.04;
+}
+.deck{
+  margin:5px 0 0;
+  color:#37444c;
+  font-size:1.05rem;
+}
+.content{padding:30px 48px}
+.home-nav{
+  padding:16px 48px 0;
+}
+.home-link{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  border:1px solid #9c9587;
+  background:#fffdf8;
+  color:var(--navy-dark);
+  border-radius:6px;
+  padding:9px 14px;
+  font-weight:800;
+  text-decoration:none;
+}
+.home-link:hover,.home-link:focus-visible{
+  border-color:var(--navy);
+  outline:3px solid rgba(47,110,157,.17);
+  outline-offset:2px;
+}
+.section-kicker{
+  margin:0 0 5px;
+  color:var(--blue);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.78rem;
+}
+h2{
+  margin:.15rem 0 1rem;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--navy-dark);
+  font-size:clamp(1.6rem,3vw,2.25rem);
+  line-height:1.18;
+}
+h3{
+  color:var(--navy-dark);
+  margin:.25rem 0 .4rem;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+}
+.genre-note{
+  border-left:5px solid var(--gold);
+  padding:12px 16px;
+  margin:0 0 24px;
+  background:#f4eee1;
+  color:#475159;
+}
+.photo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin:20px 0 28px;
+}
+.photo-card{
+  margin:0;
+  border:1px solid var(--line);
+  background:#f0ebdf;
+  padding:10px;
+}
+.photo-card button{
+  display:block;
+  border:0;
+  padding:0;
+  background:transparent;
+  width:100%;
+  cursor:zoom-in;
+}
+.photo-card img{
+  display:block;
+  width:100%;
+  height:310px;
+  object-fit:cover;
+  border:1px solid #9b9486;
+  filter:saturate(.84) contrast(1.03);
+}
+.photo-card figcaption{
+  padding:9px 5px 2px;
+  font-size:.88rem;
+  color:#515b61;
+}
+.people-id{
+  display:block;
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px solid #c9c2b3;
+  color:#2f3940;
+  line-height:1.42;
+}
+.people-id strong{
+  color:#123f62;
+}
+.reading-wrap{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:27px 0 19px;
+  margin:0 0 34px;
+}
+.reading{
+  columns:2 360px;
+  column-gap:38px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;
+}
+.reading p{
+  break-inside:avoid;
+  margin:0 0 1em;
+}
+.explore-head{
+  margin-top:6px;
+}
+.subheading{
+  margin-top:-7px;
+  color:#59656c;
+  max-width:780px;
+}
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:17px 0 15px;
+}
+.control{
+  min-height:44px;
+  border:1px solid #9c9587;
+  background:#fffdf8;
+  color:#25333c;
+  border-radius:6px;
+  padding:9px 14px;
+  font-weight:700;
+  cursor:pointer;
+}
+.control:hover,.control:focus-visible{
+  border-color:var(--navy);
+  outline:3px solid rgba(47,110,157,.17);
+  outline-offset:2px;
+}
+.explore-status{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin:3px 0 10px;
+  color:#5c666d;
+  font-size:.9rem;
+}
+.progress-track{
+  flex:1;
+  max-width:320px;
+  height:8px;
+  background:#ddd7c9;
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0;
+  background:var(--olive);
+  transition:width .2s ease;
+}
+.map-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);
+  gap:20px;
+  align-items:start;
+}
+.map-panel{
+  border:1px solid #aaa395;
+  background:#e9e3d6;
+  padding:10px;
+  min-width:0;
+}
+.map-viewport{
+  position:relative;
+  overflow:auto;
+  background:#cfe4eb;
+  border:1px solid #8f9ca1;
+}
+.map-stage{
+  position:relative;
+  transform-origin:top left;
+  transition:transform .2s ease;
+  width:100%;
+}
+.map-stage img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.guides .map-stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(18,63,98,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(18,63,98,.08) 1px,transparent 1px);
+  background-size:10% 10%;
+}
+.hotspot{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:3px solid white;
+  background:var(--navy);
+  color:white;
+  box-shadow:0 3px 9px rgba(0,0,0,.35);
+  cursor:pointer;
+  z-index:5;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+}
+.hotspot:hover,.hotspot:focus-visible,.hotspot.active{
+  background:var(--gold);
+  color:#15191c;
+  outline:3px solid rgba(255,255,255,.85);
+  outline-offset:2px;
+}
+.hotspot.visited::after{
+  content:"✓";
+  position:absolute;
+  right:-7px;
+  top:-8px;
+  background:var(--success);
+  color:white;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:.68rem;
+  border:2px solid white;
+}
+.info-panel{
+  min-height:390px;
+  border:1px solid var(--line);
+  background:#fbf8f0;
+  padding:22px;
+}
+.info-number{
+  display:inline-grid;
+  place-items:center;
+  width:40px;height:40px;
+  border-radius:50%;
+  background:var(--navy);
+  color:white;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.info-eyebrow{
+  color:var(--blue);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+  font-size:.74rem;
+}
+.info-panel p{margin:.65rem 0}
+.think{
+  margin-top:18px!important;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-family:Georgia,"Times New Roman",serif;
+}
+.placeholder{
+  color:#657079;
+  display:flex;
+  min-height:300px;
+  flex-direction:column;
+  justify-content:center;
+}
+.index-label{
+  margin:18px 0 7px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:#616c72;
+  font-size:.78rem;
+  font-weight:800;
+}
+.index{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.index-btn{
+  width:44px;height:44px;
+  border-radius:5px;
+  background:#fffdf8;
+  border:1px solid #918b80;
+  color:var(--navy-dark);
+  cursor:pointer;
+  font-weight:800;
+}
+.index-btn:hover,.index-btn:focus-visible,.index-btn.active{
+  background:var(--navy);
+  color:white;
+  outline:3px solid rgba(47,110,157,.17);
+  outline-offset:2px;
+}
+.index-btn.visited{
+  border-color:var(--success);
+  box-shadow:inset 0 -4px 0 var(--success);
+}
+.map-credit{
+  margin:8px 2px 0;
+  font-size:.76rem;
+  color:#687279;
+}
+.source-credit{
+  display:block;
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px solid #c9c2b3;
+  font-size:.78rem;
+  line-height:1.42;
+  color:#626d73;
+}
+.sources{
+  margin-top:30px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+}
+.sources-list{
+  margin:.4rem 0 0;
+  padding-left:1.25rem;
+  color:#505b62;
+}
+.sources-list li+li{margin-top:.72rem}
+.sources-list a{color:var(--navy);font-weight:700}
+.quick{
+  margin-top:38px;
+  padding-top:28px;
+  border-top:4px solid var(--navy);
+}
+.qcard{
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
+}
+.qcard fieldset{
+  border:0;
+  padding:0;
+  margin:0;
+}
+.qcard legend{
+  font-weight:800;
+  margin-bottom:10px;
+}
+.option{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin:8px 0;
+  padding:9px 11px;
+  border-radius:5px;
+}
+.option:hover{background:#f4f0e7}
+.option input{margin-top:5px; transform:scale(1.16)}
+.feedback{
+  margin-top:10px;
+  min-height:26px;
+  font-weight:800;
+}
+.feedback.correct{color:var(--success)}
+.feedback.incorrect{color:var(--danger)}
+.check-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+  align-items:center;
+  margin-top:19px;
+}
+.primary{
+  min-height:46px;
+  border:0;
+  border-radius:6px;
+  background:var(--navy);
+  color:white;
+  padding:10px 18px;
+  font-weight:800;
+  cursor:pointer;
+}
+.primary:hover,.primary:focus-visible{background:var(--navy-dark);outline:3px solid rgba(47,110,157,.2);outline-offset:2px}
+.score{
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  font-weight:800;
+  color:var(--navy-dark);
+}
+.footer{
+  margin-top:38px;
+  padding:18px 48px 24px;
+  border-top:1px solid var(--line);
+  color:#6a7379;
+  font-size:.78rem;
+  background:#f5f0e5;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  place-items:center;
+  background:rgba(10,17,22,.87);
+  padding:22px;
+}
+.modal.open{display:grid}
+.modal-inner{
+  max-width:min(1100px,95vw);
+  max-height:90vh;
+  position:relative;
+}
+.modal img{
+  display:block;
+  max-width:100%;
+  max-height:82vh;
+  object-fit:contain;
+  background:white;
+  border:5px solid #eee7d8;
+}
+.modal-caption{
+  color:white;
+  text-align:center;
+  padding-top:8px;
+}
+.modal-close{
+  position:absolute;
+  top:-16px;right:-16px;
+  width:44px;height:44px;
+  border-radius:50%;
+  border:2px solid white;
+  background:var(--navy-dark);
+  color:white;
+  font-size:1.3rem;
+  cursor:pointer;
+}
+@media(max-width:800px){
+  .page{width:100%;margin:0;border-left:0;border-right:0}
+  .masthead,.home-nav,.content,.footer{padding-left:20px;padding-right:20px}
+  .photo-grid{grid-template-columns:1fr}
+  .photo-card img{height:auto;max-height:420px}
+  .reading{columns:1}
+  .map-layout{grid-template-columns:1fr}
+  .info-panel{min-height:0}
+  .explore-status{align-items:flex-start;flex-direction:column}
+  .progress-track{width:100%;max-width:none}
+}
+@media(max-width:520px){
+  .content{padding-top:22px}
+  .hotspot{width:36px;height:36px;font-size:.86rem}
+  .map-panel{padding:6px}
+}
+@media print{
+  body{background:white}
+  .page{width:100%;margin:0;box-shadow:none;border:0}
+  .home-nav,.controls,.hotspot,.index,.quick,.modal{display:none!important}
+  .map-layout{display:block}
+  .info-panel{margin-top:14px}
+}
+</style>
+</head>
+<body>
+<main class="page" id="part1">
+  <header class="masthead">
+    <div class="series">Operation Overlord · The Invasion of Normandy: D-Day</div>
+    <div class="part-label">PART 1</div>
+    <h1>Planning the Invasion of Normandy</h1>
+    <p class="deck"><em>Informational Narrative</em></p>
+  </header>
+
+  <nav class="home-nav" aria-label="Web Book navigation">
+    <a class="home-link" href="index.html">← Return to Web Book Home</a>
+  </nav>
+
+  <div class="content">
+    <p class="section-kicker">Before You Read</p>
+    <h2>Planning for an invasion unlike any before it</h2>
+    <div class="genre-note"><strong>Genre note:</strong> This informational narrative uses reconstructed dialogue to present the planning problems and decisions surrounding Operation Overlord.</div>
+
+    <section aria-labelledby="context-title">
+      <h2 id="context-title">Historical Context</h2>
+      <div class="photo-grid">
+        <figure class="photo-card">
+          <button type="button" class="zoom-photo" data-src="assets/Operation_Overlord_Web_Book_Part_1_v8_LOCKED/image_01.png" data-caption="Illustrated black-and-white depiction of Allied planning at Southwick House, England, May 1944. Left to right: Lieutenant General Walter Bedell Smith, General Dwight D. Eisenhower, and General Omar N. Bradley. Project-created historical illustration/reconstruction for the Operation Overlord Web Book; not a primary-source photograph.">
+            <img src="assets/Operation_Overlord_Web_Book_Part_1_v8_LOCKED/image_01.png" alt="Black-and-white illustrated depiction of Walter Bedell Smith, Dwight D. Eisenhower, and Omar Bradley studying invasion maps at Southwick House">
+          </button>
+          <figcaption>
+            <strong>Allied planning at Southwick House, May 1944.</strong> A black-and-white illustrated depiction of key commanders planning the invasion.
+            <span class="people-id"><strong>Who’s pictured, left to right:</strong> Lieutenant General Walter Bedell Smith; General Dwight D. Eisenhower; General Omar N. Bradley.</span>
+            <span class="source-credit"><strong>Visual provenance:</strong> Project-created historical illustration/reconstruction for the Operation Overlord Web Book; not a primary-source photograph.</span>
+          </figcaption>
+        </figure>
+        <figure class="photo-card">
+          <button type="button" class="zoom-photo" data-src="assets/Operation_Overlord_Web_Book_Part_1_v8_LOCKED/image_02.png" data-caption="The Tehran Conference, November 1943. Left to right: Joseph Stalin, Franklin D. Roosevelt, Winston Churchill. Photograph source: Library of Congress, item 91480330.">
+            <img src="assets/Operation_Overlord_Web_Book_Part_1_v8_LOCKED/image_02.png" alt="Joseph Stalin, Franklin Roosevelt, and Winston Churchill at the Tehran Conference in 1943">
+          </button>
+          <figcaption>
+  <strong>The Tehran Conference, November 1943.</strong> Allied leaders discuss the strategy for defeating Nazi Germany.
+  <span class="people-id"><strong>Who’s pictured, left to right:</strong> Joseph Stalin; Franklin D. Roosevelt; Winston Churchill.</span>
+  <span class="source-credit"><strong>Photo source:</strong> Library of Congress, item 91480330.</span>
+</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="reading-wrap" aria-labelledby="reading-title">
+      <p class="section-kicker">Read</p>
+      <h2 id="reading-title">Part 1 Narrative</h2>
+      <div class="reading">
+        <p>In the dimly lit war room, the air was thick with anticipation and the sharp scent of tobacco. Maps of Normandy covered the long table, their edges curled and worn from countless hours of scrutiny. General Dwight D. Eisenhower, Supreme Commander of the Allied Expeditionary Force, stood at the head of the table, his eyes scanning the faces of his assembled officers—each one a seasoned veteran, each one carrying the weight of history on their shoulders.</p>
+<p>“Gentlemen, this is it,” Eisenhower began, his voice steady but laced with the gravity of the moment. “Operation Overlord. The liberation of Europe begins here.”</p>
+<p>Colonel Charles Devereux leaned forward, his eyes fixed on the map of Omaha Beach. “The defenses are formidable,” he said, tapping the beach with his finger. “High bluffs, fortified positions, minefields… It’s going to be a bloodbath.”</p>
+<p>“We know,” Eisenhower replied, his gaze unyielding. “But we have no choice. We have to establish a foothold, and Omaha is critical.”</p>
+<p>Major General Omar Bradley nodded. “The naval bombardment will soften them up. We’ll hit them with everything we’ve got before the first wave lands.”</p>
+<p>“And the airborne divisions?” asked Brigadier General James Gavin, his voice tight with concern. “Dropping them behind enemy lines… it’s a high risk.”</p>
+<p>“A necessary one,” Eisenhower said firmly. “They’ll secure key bridges and roads, prevent German reinforcements from reaching the beaches. Without their success, the landings could fail.”</p>
+<p>The room fell silent as the enormity of the task ahead settled over them. Each man knew the cost of failure—thousands of lives, the fate of nations, the course of the entire war.</p>
+<p>“We have to trust our men,” Eisenhower continued. “They are well-trained and determined. They know what’s at stake.”</p>
+<p>Devereux’s brow furrowed as he traced a line from the beach to the inland objectives. “Timing is everything. If we don’t break through quickly, we’ll be sitting ducks.”</p>
+<p>“Agreed,” said Bradley. “We need to move fast, secure the beachheads, and push inland before the Germans can regroup.”</p>
+<p>Eisenhower looked around the table, meeting the eyes of each officer in turn. “This is our moment. The Germans believe they are invincible, but they are not. We will hit them with everything we have and show them the strength and resolve of the Allied forces.”</p>
+<p>Gavin took a deep breath, then spoke up. “And if things go wrong? If the landings falter?”</p>
+<p>Eisenhower’s expression hardened. “Then we adapt. We overcome. We do not fail. The world is watching, and we cannot let them down.” The room fell into a heavy silence once more, the weight of responsibility palpable. Each man understood the stakes, the lives hanging in the balance. They were not just planning a military operation; they were shaping the future of the world.</p>
+<p>“Prepare your men,” Eisenhower finally said, his voice quiet but resolute. “Tomorrow, we make history.”</p>
+<p>As the officers filed out of the room, Devereux lingered for a moment, his eyes still on the map. He could almost hear the roar of the surf, the crack of gunfire, the cries of his men. Taking a deep breath, he squared his shoulders and followed the others. They had a mission to accomplish, and failure was not an option.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="explore-title">
+      <p class="section-kicker">Explore</p>
+      <h2 class="explore-head" id="explore-title">Explore the Planning of D-Day</h2>
+      <p class="subheading">Select a numbered point on the map—or use the Planning Index—to examine six decisions that had to work together for the invasion to succeed.</p>
+
+      <div class="controls" aria-label="Map controls">
+        <button type="button" class="control" id="zoomBtn">Zoom to 125%</button>
+        <button type="button" class="control" id="guidesBtn">Hide Guides</button>
+        <button type="button" class="control" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="explore-status">
+        <span id="progressText">0 of 6 planning points explored</span>
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="map-layout">
+        <div>
+          <div class="map-panel guides" id="mapPanel">
+            <div class="map-viewport" id="mapViewport">
+              <div class="map-stage" id="mapStage">
+                <img src="assets/Operation_Overlord_Web_Book_Part_1_v8_LOCKED/image_03.svg" alt="Map of the D-Day landings showing Utah, Omaha, Gold, Juno, and Sword beaches and Allied landing routes">
+                <button type="button" class="hotspot" data-item="1" style="left:58.5%;top:55.5%;" aria-label="Planning point 1: Omaha Beach Defenses"><span>1</span></button>
+<button type="button" class="hotspot" data-item="2" style="left:61.5%;top:36.5%;" aria-label="Planning point 2: Naval Bombardment"><span>2</span></button>
+<button type="button" class="hotspot" data-item="3" style="left:39.0%;top:48.5%;" aria-label="Planning point 3: Airborne Divisions"><span>3</span></button>
+<button type="button" class="hotspot" data-item="4" style="left:45.5%;top:61.0%;" aria-label="Planning point 4: Bridges &amp; Roads"><span>4</span></button>
+<button type="button" class="hotspot" data-item="5" style="left:72.0%;top:61.5%;" aria-label="Planning point 5: Beachheads &amp; Inland Advance"><span>5</span></button>
+<button type="button" class="hotspot" data-item="6" style="left:83.0%;top:61.5%;" aria-label="Planning point 6: Timing &amp; Reinforcements"><span>6</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="index-label">Planning Index</div>
+          <div class="index" aria-label="Planning Index">
+            <button type="button" class="index-btn" data-item="1" aria-label="Open planning point 1: Omaha Beach Defenses">1</button>
+<button type="button" class="index-btn" data-item="2" aria-label="Open planning point 2: Naval Bombardment">2</button>
+<button type="button" class="index-btn" data-item="3" aria-label="Open planning point 3: Airborne Divisions">3</button>
+<button type="button" class="index-btn" data-item="4" aria-label="Open planning point 4: Bridges &amp; Roads">4</button>
+<button type="button" class="index-btn" data-item="5" aria-label="Open planning point 5: Beachheads &amp; Inland Advance">5</button>
+<button type="button" class="index-btn" data-item="6" aria-label="Open planning point 6: Timing &amp; Reinforcements">6</button>
+          </div>
+          <div class="map-credit">Map: “Map of the D-Day landings,” CC BY 4.0, Wikimedia Commons (Hogweard; derivative of work by Philg88).</div>
+        </div>
+
+        <aside class="info-panel" id="infoPanel" aria-live="polite">
+          <div class="placeholder">
+            <div class="info-number">?</div>
+            <h3>Select a planning point</h3>
+            <p>Use a number on the map or in the Planning Index. The explanation will appear here while the map remains visible.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quick" aria-labelledby="quick-title">
+      <p class="section-kicker">Quick Check</p>
+      <h2 id="quick-title">Check Your Understanding</h2>
+      <p>Answer all three questions, then choose <strong>Check Answers</strong>. Each question will tell you whether your response is correct.</p>
+
+      <form id="quizForm">
+        <div class="qcard" data-q="1">
+          <fieldset>
+            <legend>1. Why were airborne divisions sent behind enemy lines?</legend>
+            <label class="option"><input type="radio" name="q1" value="a"> To replace the naval bombardment</label>
+            <label class="option"><input type="radio" name="q1" value="b"> To secure key bridges and roads and interfere with German reinforcements</label>
+            <label class="option"><input type="radio" name="q1" value="c"> To remain far from the landing beaches</label>
+          </fieldset>
+          <div class="feedback" id="f1" aria-live="polite"></div>
+        </div>
+
+        <div class="qcard" data-q="2">
+          <fieldset>
+            <legend>2. What did Bradley say the Allied forces needed to do after establishing the beachheads?</legend>
+            <label class="option"><input type="radio" name="q2" value="a"> Wait on the beaches for additional orders</label>
+            <label class="option"><input type="radio" name="q2" value="b"> Return to the ships before German forces regrouped</label>
+            <label class="option"><input type="radio" name="q2" value="c"> Push inland quickly before the Germans could regroup</label>
+          </fieldset>
+          <div class="feedback" id="f2" aria-live="polite"></div>
+        </div>
+
+        <div class="qcard" data-q="3">
+          <fieldset>
+            <legend>3. Which idea is emphasized repeatedly in the planning discussion?</legend>
+            <label class="option"><input type="radio" name="q3" value="a"> Timing and coordination were essential</label>
+            <label class="option"><input type="radio" name="q3" value="b"> The invasion could succeed without airborne troops</label>
+            <label class="option"><input type="radio" name="q3" value="c"> Omaha Beach would offer little resistance</label>
+          </fieldset>
+          <div class="feedback" id="f3" aria-live="polite"></div>
+        </div>
+
+        <div class="check-actions">
+          <button class="primary" type="submit">Check Answers</button>
+          <button class="control" type="button" id="clearQuiz">Clear Answers</button>
+          <div class="score" id="score" aria-live="polite"></div>
+        </div>
+      </form>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <p class="section-kicker">Sources</p>
+      <h2 id="sources-title">Sources / References</h2>
+      <ul class="sources-list">
+        <li><strong>Operation Overlord project, original Part 1 source text.</strong> Basis for the informational narrative presented above. As the Genre note explains, the dialogue is reconstructed rather than a transcript of a historical meeting.</li>
+        <li><strong>U.S. Army Center of Military History.</strong> William M. Hammond, <a href="https://history.army.mil/portals/143/Images/Publications/catalog/72-18.pdf">“Normandy: 6 June–24 July 1944,”</a> <em>The U.S. Army Campaigns of World War II</em>, CMH Pub 72-18. Used to verify the historical planning and invasion context represented in the six planning points.</li>
+        <li><strong>Library of Congress.</strong> <a href="https://www.loc.gov/item/91480330/">Tehran Conference photograph, 1943</a>, item 91480330. Source for the historical photograph shown in the opening context.</li>
+        <li><strong>Wikimedia Commons.</strong> <a href="https://commons.wikimedia.org/wiki/File:Map_of_the_D-Day_landings.svg">“Map of the D-Day landings”</a>, Hogweard; derivative of work by Philg88, CC BY 4.0. Source for the interactive map. The local map credit above remains in place.</li>
+        <li><strong>Operation Overlord Web Book visual reconstruction.</strong> Southwick House planning image. Project-created historical illustration/reconstruction; not a primary-source photograph.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer class="footer">
+    Operation Overlord Web Book · Part 1 v8 · Built from the locked reusable Part structure.
+  </footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Enlarged historical photograph">
+  <div class="modal-inner">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Close enlarged image">×</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const root = document.getElementById('part1');
+  const items = [{"n": 1, "title": "Omaha Beach Defenses", "eyebrow": "THE PROBLEM", "text": "Omaha was critical, but its high bluffs, fortified positions, and minefields made establishing a foothold especially dangerous.", "think": "Why would the terrain at Omaha make speed and coordination especially important?", "x": 58.5, "y": 55.5}, {"n": 2, "title": "Naval Bombardment", "eyebrow": "THE OPENING STRIKE", "text": "Bradley planned for naval guns to strike German defenses before the first landing wave reached shore. The goal was to weaken resistance before soldiers entered the beach.", "think": "What had to happen before the landing craft reached the beach?", "x": 61.5, "y": 36.5}, {"n": 3, "title": "Airborne Divisions", "eyebrow": "BEHIND ENEMY LINES", "text": "Airborne troops would be dropped inland despite the risk. Their success was meant to disrupt German movement and support the landings from behind the coastal defenses.", "think": "Why accept the risk of placing troops behind German lines?", "x": 39.0, "y": 48.5}, {"n": 4, "title": "Bridges & Roads", "eyebrow": "CONTROL THE ROUTES", "text": "Paratroopers were expected to secure key bridges and roads so German reinforcements could not move freely toward the beaches.", "think": "How could controlling roads and bridges protect soldiers landing on the coast?", "x": 45.5, "y": 61.0}, {"n": 5, "title": "Beachheads & Inland Advance", "eyebrow": "THE NEXT MOVE", "text": "Landing was only the beginning. Allied forces needed to secure the beachheads and move inland quickly rather than remain exposed along the shoreline.", "think": "Why would staying on the beach make the Allied force more vulnerable?", "x": 72.0, "y": 61.5}, {"n": 6, "title": "Timing & Reinforcements", "eyebrow": "THE CLOCK IS RUNNING", "text": "The planners repeatedly return to timing. The longer the Allies remained stalled, the more opportunity German forces had to regroup and reinforce the coast.", "think": "What does the planning discussion suggest was the Allies’ greatest enemy besides the German defenses?", "x": 83.0, "y": 61.5}];
+  const infoPanel = document.getElementById('infoPanel');
+  const mapPanel = document.getElementById('mapPanel');
+  const mapStage = document.getElementById('mapStage');
+  const mapViewport = document.getElementById('mapViewport');
+  const progressText = document.getElementById('progressText');
+  const progressFill = document.getElementById('progressFill');
+  const zoomBtn = document.getElementById('zoomBtn');
+  const guidesBtn = document.getElementById('guidesBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const visited = new Set();
+  let zoomed = false;
+
+  function getItem(n) {
+    return items.find(x => x.n === Number(n));
+  }
+
+  function renderItem(n) {
+    const item = getItem(n);
+    if (!item) return;
+    visited.add(item.n);
+    infoPanel.innerHTML = `
+      <div class="info-number">${item.n}</div>
+      <div class="info-eyebrow">${item.eyebrow}</div>
+      <h3>${item.title}</h3>
+      <p>${item.text}</p>
+      <p class="think"><strong>Think about it:</strong> ${item.think}</p>
+    `;
+    document.querySelectorAll('[data-item]').forEach(el => {
+      const active = Number(el.dataset.item) === item.n;
+      el.classList.toggle('active', active);
+      if (visited.has(Number(el.dataset.item))) el.classList.add('visited');
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const count = visited.size;
+    progressText.textContent = `${count} of 6 planning points explored`;
+    progressFill.style.width = `${(count / 6) * 100}%`;
+  }
+
+  document.querySelectorAll('.hotspot,.index-btn').forEach(btn => {
+    btn.addEventListener('click', () => renderItem(btn.dataset.item));
+  });
+
+  zoomBtn.addEventListener('click', () => {
+    zoomed = !zoomed;
+    mapStage.style.width = zoomed ? '125%' : '100%';
+    zoomBtn.textContent = zoomed ? 'Return to 100%' : 'Zoom to 125%';
+    if (!zoomed) {
+      mapViewport.scrollLeft = 0;
+      mapViewport.scrollTop = 0;
+    }
+  });
+
+  guidesBtn.addEventListener('click', () => {
+    const on = mapPanel.classList.toggle('guides');
+    guidesBtn.textContent = on ? 'Hide Guides' : 'Show Guides';
+  });
+
+  resetBtn.addEventListener('click', () => {
+    visited.clear();
+    document.querySelectorAll('[data-item]').forEach(el => el.classList.remove('active','visited'));
+    infoPanel.innerHTML = `
+      <div class="placeholder">
+        <div class="info-number">?</div>
+        <h3>Select a planning point</h3>
+        <p>Use a number on the map or in the Planning Index. The explanation will appear here while the map remains visible.</p>
+      </div>`;
+    mapPanel.classList.add('guides');
+    guidesBtn.textContent = 'Hide Guides';
+    zoomed = false;
+    mapStage.style.width = '100%';
+    zoomBtn.textContent = 'Zoom to 125%';
+    mapViewport.scrollLeft = 0;
+    mapViewport.scrollTop = 0;
+    updateProgress();
+  });
+
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  document.querySelectorAll('.zoom-photo').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lastFocus = btn;
+      modalImg.src = btn.dataset.src;
+      modalImg.alt = btn.querySelector('img').alt;
+      modalCaption.textContent = btn.dataset.caption || '';
+      modal.classList.add('open');
+      modalClose.focus();
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modalImg.src = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  const answers = { q1:'b', q2:'c', q3:'a' };
+  const form = document.getElementById('quizForm');
+  const score = document.getElementById('score');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let correct = 0;
+    for (let i=1;i<=3;i++) {
+      const key = 'q'+i;
+      const selected = form.querySelector(`input[name="${key}"]:checked`);
+      const fb = document.getElementById('f'+i);
+      fb.className = 'feedback';
+      if (!selected) {
+        fb.textContent = 'Choose an answer before checking this question.';
+        fb.classList.add('incorrect');
+      } else if (selected.value === answers[key]) {
+        correct++;
+        fb.textContent = '✓ Correct';
+        fb.classList.add('correct');
+      } else {
+        fb.textContent = '✗ Incorrect — review the reading or planning map and try again.';
+        fb.classList.add('incorrect');
+      }
+    }
+    score.textContent = `${correct} out of 3 correct`;
+  });
+
+  document.getElementById('clearQuiz').addEventListener('click', () => {
+    form.reset();
+    for (let i=1;i<=3;i++) {
+      const fb = document.getElementById('f'+i);
+      fb.textContent = '';
+      fb.className = 'feedback';
+    }
+    score.textContent = '';
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>

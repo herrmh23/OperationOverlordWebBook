@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Operation Overlord — Part 6: A Soldier’s Mom’s Diary — v12</title>
+<style>
+:root{--navy:#103e67;--navy2:#0b2d49;--rust:#a34f38;--gold:#ad8950;--green:#667648;--paper:#f4efe3;--card:#fffaf0;--ink:#282821;--muted:#6c675b;--line:#d6cab3;--focus:#df9e53}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#dedbd3;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}button{font:inherit;cursor:pointer}a{color:var(--navy)}
+.page{width:min(1150px,calc(100% - 28px));margin:22px auto 50px;background:#fffdf7;box-shadow:0 12px 30px rgba(30,36,40,.12);border:1px solid var(--line)}
+.masthead{padding:26px 48px 20px;border-bottom:4px solid var(--navy);background:linear-gradient(#fffdf8,#f7f2e7)}.series{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--muted)}.part-label{margin-top:10px;color:#2f6e9d;font-size:.9rem;font-weight:800;letter-spacing:.16em}h1{margin:.2rem 0 .1rem;color:var(--navy2);font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.45rem);line-height:1.04}.deck{margin:5px 0 0;color:#37444c;font-size:1.05rem}
+.progress-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:17px;font-size:.86rem;font-weight:800;color:var(--muted)}.track{width:min(320px,100%);height:8px;border-radius:999px;background:#ddd7c9;overflow:hidden}.fill{height:100%;width:0;background:var(--green);transition:width .18s ease}
+.home-nav{padding:16px 48px 0}
+.home-link{display:inline-flex;align-items:center;min-height:44px;border:1px solid #9c9587;background:#fffdf8;color:var(--navy2);border-radius:6px;padding:9px 14px;font-weight:800;text-decoration:none}
+.home-link:hover,.home-link:focus-visible{border-color:var(--navy);outline:3px solid rgba(47,110,157,.17);outline-offset:2px}
+.shell{max-width:none;margin:0;padding:24px 48px 42px}section+section{margin-top:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 4px 18px rgba(48,41,27,.06)}.section-card{padding:18px}.section-card h2,.intro h2,.quiz h2{font:700 1.5rem Georgia,serif;margin:0 0 6px}.section-card p,.intro p,.quiz>p{margin:0;color:var(--muted)}
+.opening-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:18px;align-items:center}.opening-copy h2{font:700 1.5rem Georgia,serif;margin:0 0 8px}.opening-copy p+p{margin-top:10px}.source-status{margin-top:14px;padding:13px 14px;background:#eee6d6;border-left:4px solid var(--gold);font-size:.9rem;color:#4b493f}.source-status strong{color:var(--ink)}.visual-button{padding:0;border:1px solid #d4c8b2;border-radius:12px;overflow:hidden;background:#fffdf8;display:block;width:100%}.visual-button img{display:block;width:100%;height:auto}.caption{margin-top:7px!important;font-size:.77rem;color:var(--muted)!important}
+.source-pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:14px}.page-thumb{padding:10px;border:1px solid #d4c8b2;border-radius:12px;background:#fffdf8;text-align:left}.page-thumb img{display:block;width:100%;height:auto;border:1px solid #e0d8c7}.page-thumb strong{display:block;margin-top:8px;color:var(--navy2)}.page-thumb span{display:block;font-size:.78rem;color:var(--muted);margin-top:2px}.page-thumb:hover{transform:translateY(-2px)}.page-thumb:focus-visible,.visual-button:focus-visible,.lens-button:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.transcription-note{margin-top:12px;padding:11px 13px;border:1px solid #d8ccb5;background:#fffdf8;border-radius:9px;font-size:.84rem;color:#5c594f}.transcript{margin-top:14px;background:#fffdf8;border:1px solid #cfc3ab;border-radius:11px;padding:24px 26px}.transcript-header{border-bottom:1px solid #ddd1b8;padding-bottom:12px;margin-bottom:16px}.transcript-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#786a50}.transcript-date{font:700 1.15rem Georgia,serif;margin:5px 0 0;color:var(--navy2)}.transcript p{margin:0 0 14px;color:#3f3e37;line-height:1.68}.transcript p:last-child{margin-bottom:0}.signature{font:italic 700 1.1rem Georgia,serif;color:var(--navy2)!important}
+.analysis-layout{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(330px,.78fr);gap:18px;align-items:start}.lens-card{padding:20px;border-top:5px solid var(--navy)}.analysis-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}.analysis-kicker{margin:0 0 4px;color:var(--navy);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.74rem}.lens-card h2{font:700 1.8rem Georgia,serif;margin:0 0 6px;color:var(--navy2)}.lens-card>p,.analysis-head p{margin:0;color:var(--muted)}.btn{min-height:44px;padding:9px 13px;border:1px solid #b8ad96;border-radius:8px;background:#fffdf7;color:var(--ink);font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+.sequence{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px}.sequence span{border:1px solid #d3c7af;border-radius:999px;background:#fffdf8;padding:7px 8px;text-align:center;font-size:.75rem;font-weight:900;color:#5b584f}.sequence b{color:var(--navy)}.lens-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:15px}.lens-group{border:1px solid #d8ccb5;border-radius:11px;background:#fffdf8;padding:14px}.lens-group-label{margin:0 0 9px;font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#786a50}.lens-grid{display:grid;grid-template-columns:1fr;gap:8px}.lens-button{min-height:48px;border:1px solid #c9bea8;border-radius:8px;background:#fffdf8;color:var(--ink);font-weight:800;text-align:left;padding:9px 11px;display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:center}.lens-button .n{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff}.lens-button.done{background:#edf0df}.lens-button.done .n{background:var(--green)}.lens-button.active{box-shadow:inset 0 0 0 2px var(--rust)}.lens-button.active .n{background:var(--rust)}.legend{display:flex;gap:14px;flex-wrap:wrap;margin:13px 0 0;font-size:.76rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block;background:var(--navy)}.dot.green{background:var(--green)}.dot.rust{background:var(--rust)}
+.info-panel{padding:20px;position:sticky;top:12px}.kicker{font-size:.7rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#846a3b}.info-panel h2{font:700 1.72rem/1.08 Georgia,serif;margin:7px 0 7px}.category{display:inline-block;background:#ebe3d3;border-radius:999px;padding:5px 9px;margin:0 0 14px;font-size:.76rem;font-weight:800}.prompt-card{border:1px solid #c7baa1;border-radius:11px;background:#efe6d5;padding:16px}.label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#786a50;margin-bottom:6px}.prompt-text{font-size:1.04rem;line-height:1.6;color:#3f3e37;margin:0}.evidence-rule{margin:14px 0 0;padding-top:13px;border-top:1px solid #d1c3a7;font-size:.88rem;color:#58544b}.tip{margin-top:16px;padding:12px 13px;background:#eee6d6;border-left:4px solid var(--gold);font-size:.82rem;line-height:1.45}
+.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}.context-box{border:1px solid #d8ccb5;border-radius:10px;background:#fffdf8;padding:17px}.context-label{margin:0 0 5px;font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.context-box h3{font:700 1.25rem Georgia,serif;color:var(--navy2);margin:0 0 8px}.context-box p{margin:0;color:#55564e}.observe{border-top:5px solid var(--navy)}.observe .context-label{color:var(--navy)}.explain{border-top:5px solid var(--gold)}.explain .context-label{color:#846a3b}.context-warning{margin-top:14px;padding:11px 13px;background:#eee6d6;border-left:4px solid var(--rust);font-size:.85rem;color:#4d493f}
+.source-list{margin:14px 0 0;padding-left:20px;color:#55564e}.source-list li+li{margin-top:7px}.source-list a{font-weight:800}.source-note{margin-top:12px!important;font-size:.8rem!important;color:var(--muted)!important}
+.quiz{padding:20px}.quiz h2{font-size:1.38rem}.quiz-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}.q{padding:14px;border:1px solid #d8ccb5;border-radius:10px;background:#fffdf8}.q.correct,.q.incorrect{background:#fffdf8;border-color:#d8ccb5}.q legend{font-weight:800;margin-bottom:9px;line-height:1.35}.choice{display:flex;gap:8px;align-items:flex-start;margin:7px 0;font-size:.9rem}.choice input{margin-top:4px}.quiz-feedback{margin-top:10px;font-size:.84rem;font-weight:800;min-height:1.2em}.q.correct .quiz-feedback{color:#3f5f28}.q.incorrect .quiz-feedback{color:#8c3f2c}.quiz-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:13px}#quizResult{font-weight:800}
+footer{max-width:none;margin:0;padding:0 48px 28px;color:var(--muted);font-size:.78rem}
+.modal{position:fixed;inset:0;background:rgba(20,17,12,.78);display:none;align-items:center;justify-content:center;padding:26px;z-index:9999}.modal.open{display:flex}.modal-inner{position:relative;max-width:min(1200px,96vw);max-height:92vh;background:#fbf8f1;border-radius:12px;padding:14px;box-shadow:0 20px 48px rgba(0,0,0,.35);overflow:auto}.modal-inner img{display:block;max-width:100%;max-height:84vh;width:auto;height:auto;margin:auto}.modal-close{position:sticky;top:0;float:right;width:40px;height:40px;border-radius:50%;border:0;background:#143f67;color:#fff;font-weight:900;z-index:2}
+@media(max-width:900px){.opening-grid,.analysis-layout,.context-grid{grid-template-columns:1fr}.info-panel{position:static}.quiz-grid{grid-template-columns:1fr}.sequence{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.page{width:100%;margin:0;border-left:0;border-right:0}.masthead,.home-nav,.shell,footer{padding-left:20px;padding-right:20px}}
+@media(max-width:650px){.shell{padding-left:10px;padding-right:10px}.source-pages,.lens-groups{grid-template-columns:1fr}.sequence{grid-template-columns:1fr 1fr}.transcript{padding:18px 16px}}
+
+/* Part 6 v5 refinements */
+.caption{
+  text-align:center;
+}
+.visual-button{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+.visual-button img{
+  border:0;
+  border-radius:0;
+}
+.page-thumb{
+  background:transparent;
+  border:0;
+  padding:0;
+  box-shadow:none;
+  text-align:center;
+}
+.page-thumb img{
+  border:0;
+  border-radius:0;
+}
+.page-thumb strong,
+.page-thumb span{
+  text-align:center;
+}
+.page-thumb strong{
+  margin-top:9px;
+}
+.page-thumb span{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Diary-page treatment. The locked Web Book fonts are preserved. */
+.transcript{
+  position:relative;
+  overflow:hidden;
+  padding:30px 34px 34px 72px;
+  border:1px solid #cbbf9f;
+  border-radius:4px;
+  background:
+    linear-gradient(90deg, transparent 0 49px, rgba(168,78,64,.30) 49px 51px, transparent 51px),
+    repeating-linear-gradient(
+      to bottom,
+      #fbf4df 0,
+      #fbf4df 30px,
+      rgba(94,126,145,.22) 31px,
+      #fbf4df 32px
+    );
+  box-shadow:
+    0 8px 18px rgba(67,55,34,.10),
+    inset 0 0 34px rgba(141,116,69,.06);
+}
+.transcript:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(139,108,63,.05), transparent 18%),
+    radial-gradient(circle at 84% 72%, rgba(139,108,63,.04), transparent 20%);
+}
+.transcript-header{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:16px;
+  border-bottom:0;
+  padding-bottom:4px;
+  margin-bottom:18px;
+}
+.transcript-date{
+  margin:0;
+  color:#5f523e;
+  font-style:italic;
+}
+.transcript p{
+  position:relative;
+  margin:0 0 12px;
+  color:#403a31;
+  line-height:1.8;
+}
+.transcript p:first-of-type{
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-size:1.08rem;
+}
+.signature{
+  margin-top:18px!important;
+  text-align:right;
+  padding-right:34px;
+  font-size:1.18rem!important;
+}
+@media(max-width:650px){
+  .transcript{
+    padding:24px 16px 28px 48px;
+    background:
+      linear-gradient(90deg, transparent 0 31px, rgba(168,78,64,.28) 31px 33px, transparent 33px),
+      repeating-linear-gradient(
+        to bottom,
+        #fbf4df 0,
+        #fbf4df 30px,
+        rgba(94,126,145,.22) 31px,
+        #fbf4df 32px
+      );
+  }
+}
+
+/* Part 6 v6 diary refinement */
+.transcript{
+  padding:34px 42px 38px;
+  border:1px solid #bdaa82;
+  border-radius:7px;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,.18) 0,
+      rgba(255,255,255,0) 7%,
+      rgba(121,91,47,.05) 49%,
+      rgba(82,62,34,.14) 49.7%,
+      rgba(255,255,255,.18) 50.3%,
+      rgba(121,91,47,.04) 51%,
+      rgba(255,255,255,0) 93%,
+      rgba(255,255,255,.15) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      #f7eed5 0,
+      #f7eed5 31px,
+      rgba(91,122,143,.20) 32px,
+      #f7eed5 33px
+    );
+  box-shadow:
+    0 10px 24px rgba(62,49,28,.14),
+    inset 16px 0 24px rgba(119,92,50,.04),
+    inset -16px 0 24px rgba(119,92,50,.04);
+}
+.transcript:before{
+  background:
+    radial-gradient(circle at 10% 12%, rgba(139,108,63,.06), transparent 16%),
+    radial-gradient(circle at 88% 76%, rgba(139,108,63,.05), transparent 18%),
+    linear-gradient(90deg, transparent 0 4.8%, rgba(160,75,61,.30) 4.8% 5%, transparent 5%);
+}
+.transcript-header{
+  padding:0 2.5% 8px 7%;
+  margin-bottom:16px;
+}
+.transcript-date{
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:1.02rem;
+  font-weight:600;
+  color:#4b4032;
+}
+.diary-body{
+  columns:2;
+  column-gap:58px;
+  column-rule:1px solid rgba(108,86,51,.12);
+  padding:0 2.5% 0 7%;
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:.98rem;
+  letter-spacing:.01em;
+  color:#3c3429;
+}
+.diary-body p{
+  break-inside:avoid;
+  margin:0 0 12px;
+  color:#3c3429;
+  line-height:1.9;
+}
+.diary-body p:first-child{
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-style:normal;
+  font-size:1.02rem;
+}
+.diary-body .signature{
+  text-align:right;
+  padding-right:22px;
+  margin-top:20px!important;
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:1.2rem!important;
+  transform:rotate(-2deg);
+}
+.diary-corner{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:44px;
+  height:44px;
+  background:linear-gradient(135deg, rgba(180,158,113,.25) 0 49%, #efe2bf 50% 100%);
+  box-shadow:-2px -2px 5px rgba(83,65,35,.08);
+}
+.page-thumb span{
+  max-width:92%;
+  font-size:.78rem;
+  line-height:1.4;
+  margin-top:4px;
+}
+@media(max-width:800px){
+  .diary-body{
+    columns:1;
+    padding-right:3%;
+  }
+}
+@media(max-width:650px){
+  .transcript{
+    padding:26px 18px 30px 34px;
+  }
+  .transcript-header{
+    padding-left:5%;
+  }
+  .diary-body{
+    padding-left:5%;
+    font-size:.94rem;
+  }
+}
+
+/* Part 6 v8 diary refinement */
+.transcript{
+  padding:36px 46px 40px;
+  border:1px solid #ad9870;
+  border-radius:10px;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(129,95,49,.07), transparent 16%),
+    radial-gradient(circle at 92% 82%, rgba(129,95,49,.06), transparent 18%),
+    linear-gradient(90deg,
+      rgba(255,255,255,.26) 0,
+      rgba(255,255,255,.04) 6.8%,
+      rgba(122,95,55,.06) 47.9%,
+      rgba(75,57,31,.18) 49.1%,
+      rgba(255,255,255,.24) 50%,
+      rgba(122,95,55,.07) 51.2%,
+      rgba(255,255,255,.04) 93.2%,
+      rgba(255,255,255,.22) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      #f3e7c8 0,
+      #f3e7c8 31px,
+      rgba(83,116,144,.24) 32px,
+      #f3e7c8 33px
+    );
+  box-shadow:
+    0 12px 26px rgba(57,44,24,.16),
+    inset 18px 0 28px rgba(120,92,48,.06),
+    inset -18px 0 28px rgba(120,92,48,.06),
+    inset 0 0 44px rgba(131,105,63,.05);
+}
+.transcript:before{
+  background:
+    linear-gradient(90deg, transparent 0 4.8%, rgba(157,67,58,.34) 4.8% 5.04%, transparent 5.04%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 114px,
+      rgba(122,94,54,.018) 115px,
+      rgba(0,0,0,0) 116px
+    );
+}
+.transcript:after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  pointer-events:none;
+  border-radius:8px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
+}
+.transcript-header{
+  padding:0 2.5% 10px 7%;
+  margin-bottom:14px;
+}
+.transcript-label{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:.76rem;
+  letter-spacing:.15em;
+  color:#7c6850;
+  opacity:.82;
+}
+.transcript-date{
+  font-family:"Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+  font-size:1.08rem;
+  font-weight:600;
+  color:#24384f;
+  transform:rotate(-1.4deg);
+}
+.diary-body{
+  columns:2;
+  column-gap:62px;
+  column-rule:1px solid rgba(103,81,46,.14);
+  padding:0 2.5% 0 7%;
+  font-family:"Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+  font-size:1rem;
+  letter-spacing:.012em;
+  color:#22364a;
+  text-shadow:0 .2px 0 rgba(16,27,42,.06);
+}
+.diary-body p{
+  break-inside:avoid;
+  margin:0 0 12px;
+  color:#22364a;
+  line-height:1.88;
+}
+.diary-body p:first-child{
+  font-family:"Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+  font-size:1.04rem;
+}
+.diary-body .signature{
+  text-align:right;
+  padding-right:22px;
+  margin-top:20px!important;
+  font-family:"Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+  font-size:1.28rem!important;
+  color:#1e3247;
+  transform:rotate(-3deg);
+}
+.diary-corner{
+  width:48px;
+  height:48px;
+  background:
+    linear-gradient(135deg, rgba(173,148,102,.28) 0 49%, #e8d8b0 50% 100%);
+  box-shadow:-2px -2px 5px rgba(83,65,35,.10);
+}
+@media(max-width:650px){
+  .transcript{
+    padding:28px 18px 30px 34px;
+  }
+  .diary-body{
+    font-size:.96rem;
+  }
+}
+@media print{.home-nav{display:none!important}}
+</style>
+</head>
+<body>
+<div class="page" id="part6">
+<header class="masthead">
+<div class="series">Operation Overlord · The Invasion of Normandy: D-Day</div>
+<div class="part-label">PART 6</div>
+<h1>A Soldier’s Mom’s Diary</h1>
+<p class="deck"><em>Historical-Fiction Diary · Home-Front Perspective</em></p>
+<div class="progress-row"><span>Part 6 of 10</span><div class="track"><div class="fill" id="progressFill"></div></div><span id="progressText">0 of 6 examination lenses explored</span></div>
+</header>
+<nav class="home-nav" aria-label="Web Book navigation">
+<a class="home-link" href="index.html">← Return to Web Book Home</a>
+</nav>
+<main class="shell">
+<section aria-labelledby="before-title" class="card section-card">
+<div class="opening-grid">
+<div class="opening-copy">
+<h2 id="before-title">Before You Read</h2>
+<div class="source-status"><strong>Genre note:</strong> Mary and Brock are fictional characters in a historical-fiction diary set on June 6, 1944. The diary uses historically plausible home-front details to help you examine one family perspective during D-Day.</div></div>
+<div>
+<button aria-label="Enlarge the project-created historical reconstruction of a rural farm at sunrise" class="visual-button zoom-photo" data-caption="Rural farm at sunrise. Not a primary source." data-src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_01.jpg" type="button">
+<img alt="Black-and-white illustrative recreation of a rural farm at sunrise." src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_01.jpg"/>
+</button>
+<p class="caption">Rural farm at sunrise. Not a primary source.</p>
+</div>
+</div>
+</section>
+<section aria-labelledby="source-pages-title" class="card section-card">
+<p class="analysis-kicker">Select either image for a closer look at the home-front setting surrounding Mary’s diary.</p>
+<h2 id="source-pages-title">A Family Waiting at Home</h2>
+<p>Select either image for a closer look at the home-front setting surrounding Mary’s diary.</p>
+<div class="source-pages">
+<button aria-label="Enlarge the project-created historical reconstruction of Brock receiving his draft notice" class="page-thumb zoom-photo" data-caption="Brock receives his draft notice. Not a primary source." data-src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_02.jpg" type="button">
+<img alt="Black-and-white illustrative reconstruction of a young man and his mother seated at a farmhouse kitchen table." src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_02.jpg"/>
+<strong>Brock receives his draft notice.</strong>
+<span>Not a primary source. During World War II, local Selective Service boards classified and selected eligible men for induction into military service.</span></button>
+<button aria-label="Enlarge the project-created historical reconstruction of a farm mother listening to wartime radio" class="page-thumb zoom-photo" data-caption="A farm mother listening to wartime radio. Not a primary source." data-src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_03.jpg" type="button">
+<img alt="Black-and-white illustrative reconstruction of a rural woman listening closely to a tabletop radio." src="assets/Operation_Overlord_Web_Book_Part_6_v12_LOCKED/image_03.jpg"/>
+<strong>Waiting for News</strong><span>Not a primary source. Radio reports connect the home front to events happening across the Atlantic.</span>
+</button>
+</div>
+</section>
+<section aria-labelledby="transcription-title" class="card section-card">
+<p class="analysis-kicker">The Diary Entry</p>
+<h2 id="transcription-title">Mary’s Diary — June 6, 1944</h2>
+<p>Read Mary’s entry closely. Notice how ordinary farm life, radio news, uncertainty, and family worry shape her perspective.</p>
+<div class="transcription-note"><strong>Reading focus:</strong> What does Mary know? What does she fear? Which details show how the war reaches into everyday life at home?</div>
+<article aria-label="Historical-fiction diary entry by the fictional character Mary" class="transcript">
+<div class="transcript-header"><div class="transcript-label">Historical-Fiction Diary</div><div class="transcript-date">June 6, 1944</div></div><div class="diary-body"><p>Dear Diary,</p><p>I was up before daylight this morning, same as always. There were cows to milk and breakfast to get on the table. I had the radio playing low in the kitchen when the announcer broke in with the news.</p><p>Our boys have landed in France.</p><p>Normandy, he said.</p><p>I stood there with the dish towel in my hands and forgot all about the biscuits in the oven.</p><p>Ever since Brock left, I have tried not to let my mind run away with me. There is no sense worrying over what you cannot change. There is work to do here, and Brock has his work to do wherever the Army has sent him.</p><p>But this morning was different.</p><p>I kept thinking about all those mothers listening to the same radio and wondering the same thing I was wondering.</p><p><em>Is my boy there?</em></p><p>I do not know where Brock is today. Maybe that is for the best. The Army cannot tell every mother where her son is, especially now.</p><p>I still remember when his notice came.</p><p>He sat at the kitchen table and read it twice before he said anything.</p><p>“Well, Ma,” he finally said, “looks like they need me.”</p><p>He tried to smile when he said it.</p><p>I tried to smile back.</p><p>I told him I was proud of him, and I was. I still am. But being proud of your boy does not keep you from wanting to hold on to him.</p><p>Before he left, I told him to write whenever he could, keep his head down, and remember everything his father taught him about looking after himself.</p><p>Then I hugged him harder than I meant to.</p><p>He laughed a little and said, “Ma, I’m coming home.”</p><p>I told him he had better.</p><p>After the news this morning, I turned the radio off and went outside.</p><p>Funny thing about a farm. The world can be at war, and the cows still need milking. The garden still needs tending. Chickens still scratch around the yard as if nothing has happened.</p><p>I walked out toward the field where Brock has worked beside me more times than I can count.</p><p>Everything looked just the same.</p><p>That almost made it harder.</p><p>Somewhere across the ocean, boys who worked farms and fixed fences and complained about getting up early are carrying rifles instead of pitchforks.</p><p>And their mothers are waiting.</p><p>I suppose that is what I will do too.</p><p>Wait. Work. Listen to the radio.</p><p>And pray.</p><p>Tonight I will turn the radio on again after supper. I will listen for whatever news they can give us. Then I will say my prayers and get up tomorrow morning to do the work that needs doing.</p><p>That is about all a person can do.</p><p>Please, Lord, watch over Brock.</p><p>Bring my boy home.</p><p class="signature">Mary</p></div>
+<span aria-hidden="true" class="diary-corner"></span></article>
+</section>
+<section aria-label="Interactive diary examination" class="analysis-layout">
+<div class="card lens-card">
+<div class="analysis-head">
+<div>
+<p class="analysis-kicker">Read → Notice → Interpret → Context</p>
+<h2>Examine the Source</h2>
+<p>Use all six lenses. Begin with what Mary actually says, then move toward interpretation and compare her perspective with verified historical context.</p>
+</div>
+<button class="btn" id="resetBtn" type="button">Reset analysis</button>
+</div>
+<div aria-label="Close-reading sequence" class="sequence">
+<span><b>1</b> Read</span><span><b>2</b> Notice</span><span><b>3</b> Interpret</span><span><b>4</b> Context</span>
+</div>
+<div class="lens-groups">
+<div class="lens-group">
+<p class="lens-group-label">Read &amp; Notice · Text Evidence</p>
+<div class="lens-grid">
+<button class="lens-button" data-lens="0" type="button"><span class="n">1</span><span>Date &amp; Situation</span></button>
+<button class="lens-button" data-lens="1" type="button"><span class="n">2</span><span>Words &amp; Details</span></button>
+<button class="lens-button" data-lens="2" type="button"><span class="n">3</span><span>Thoughts &amp; Emotions</span></button>
+</div>
+</div>
+<div class="lens-group">
+<p class="lens-group-label">Interpret &amp; Context · Historical Thinking</p>
+<div class="lens-grid">
+<button class="lens-button" data-lens="3" type="button"><span class="n">4</span><span>Evidence vs. Inference</span></button>
+<button class="lens-button" data-lens="4" type="button"><span class="n">5</span><span>Home-Front Perspective</span></button>
+<button class="lens-button" data-lens="5" type="button"><span class="n">6</span><span>Questions for Context</span></button>
+</div>
+</div>
+</div>
+<div class="legend"><span><i class="dot"></i>Unexplored</span><span><i class="dot green"></i>Explored</span><span><i class="dot rust"></i>Selected</span></div>
+</div>
+<aside aria-live="polite" class="card info-panel">
+<div class="kicker" id="detailKicker">Examination Lens</div>
+<h2 id="detailName">Select a lens</h2>
+<div class="category" id="detailCategory">Part 6</div>
+<div class="prompt-card">
+<div class="label">Student Prompt</div>
+<p class="prompt-text" id="detailPrompt">Choose one of the six lenses. Point to exact language from Mary’s diary before you make an interpretation.</p>
+<p class="evidence-rule" id="detailRule"><strong>Evidence Guide:</strong> What the diary says, what you infer, and what outside history verifies are three different kinds of claims.</p>
+</div>
+<div class="tip"><strong>Good historical reading:</strong> A personal perspective can reveal feelings, routines, and uncertainty, but it cannot by itself explain the entire military event or represent everyone’s experience.</div>
+</aside>
+</section>
+<section aria-labelledby="context-title" class="card section-card">
+<p class="analysis-kicker">Text Evidence vs. Historical Context</p>
+<h2 id="context-title">What Comes from the Story—and What Comes from History?</h2>
+<p>Mary’s diary helps you examine a home-front perspective. Outside historical sources help you verify the larger events and circumstances surrounding D-Day.</p>
+<div class="context-grid">
+<div class="context-box observe">
+<p class="context-label">Text Evidence</p>
+<h3>What Mary says inside the diary</h3>
+<p>Mary is a farm mother. She hears news of the Normandy invasion on the radio, does not know where Brock is, remembers his departure, continues her farm chores, worries about him, and turns to prayer while she waits for more news.</p>
+</div>
+<div class="context-box explain">
+<p class="context-label">Historical Context</p>
+<h3>What verified outside information establishes</h3>
+<p>June 6, 1944 was D-Day, when Allied forces began the Normandy invasion. Americans heard early-morning radio bulletins and continued receiving invasion reports throughout the day. Wartime families often had to live with delayed or incomplete information about relatives serving overseas.</p>
+</div>
+</div>
+<div class="context-warning"><strong>Perspective limit:</strong> Mary’s diary can show how one mother might experience waiting, worry, work, and radio news. It cannot tell us the full story of D-Day or stand for every family on the home front.</div>
+</section>
+<section aria-labelledby="quick-title" class="card quiz">
+<h2 id="quick-title">Quick Check</h2>
+<p>Use the evidence, inference, perspective, and context skills you practiced above.</p>
+<form id="quizForm">
+<div class="quiz-grid">
+<fieldset class="q"><legend>1. Which statement is supported directly by Mary’s diary?</legend>
+<label class="choice"><input name="q1" type="radio" value="a"/><span>Brock is fighting on a Normandy beach.</span></label>
+<label class="choice"><input name="q1" type="radio" value="b"/><span>Mary hears on the radio that Allied troops have landed in France.</span></label>
+<label class="choice"><input name="q1" type="radio" value="c"/><span>Mary receives an Army telegram telling her where Brock is.</span></label>
+<div aria-live="polite" class="quiz-feedback" id="f1"></div>
+</fieldset>
+<fieldset class="q"><legend>2. Which statement goes beyond the evidence in the diary?</legend>
+<label class="choice"><input name="q2" type="radio" value="a"/><span>Mary keeps doing farm work while she waits for more news.</span></label>
+<label class="choice"><input name="q2" type="radio" value="b"/><span>Mary does not know where Brock is on June 6.</span></label>
+<label class="choice"><input name="q2" type="radio" value="c"/><span>Brock is one of the soldiers landing in Normandy that morning.</span></label>
+<div aria-live="polite" class="quiz-feedback" id="f2"></div>
+</fieldset>
+<fieldset class="q"><legend>3. What does Mary’s diary help us understand best?</legend>
+<label class="choice"><input name="q3" type="radio" value="a"/><span>How a family at home might experience D-Day.</span></label>
+<label class="choice"><input name="q3" type="radio" value="b"/><span>Exactly what happened on the Normandy beaches.</span></label>
+<label class="choice"><input name="q3" type="radio" value="c"/><span>How every American family felt about the war.</span></label>
+<div aria-live="polite" class="quiz-feedback" id="f3"></div>
+</fieldset>
+</div>
+<div class="quiz-actions"><button class="btn primary" type="submit">Check Answers</button><button class="btn" id="clearQuiz" type="button">Clear Answers</button><span aria-live="polite" id="quizResult"></span></div>
+</form>
+</section>
+<section aria-labelledby="sources-title" class="card section-card">
+<h2 id="sources-title">Historical Context References</h2>
+<ol class="source-list">
+<li><a href="https://www.loc.gov/item/today-in-history/june-06" rel="noopener noreferrer" target="_blank">Library of Congress — Today in History: June 6</a> — overview of D-Day and news reaching Americans on June 6, 1944.</li>
+<li><a href="https://www.loc.gov/programs/national-recording-preservation-board/recording-registry/registry-by-induction-years/2012/" rel="noopener noreferrer" target="_blank">Library of Congress — D-Day Radio Broadcast, George Hicks</a> — context for U.S. radio bulletins and continuing D-Day reports.</li>
+<li><a href="https://www.eisenhowerlibrary.gov/research/online-documents/world-war-ii-d-day-invasion-normandy" rel="noopener noreferrer" target="_blank">Dwight D. Eisenhower Presidential Library — World War II: D-Day, The Invasion of Normandy</a> — archival D-Day documents and audio resources.</li>
+<li><a href="https://www.archives.gov/kansas-city/holdings/rg-100-199.html" rel="noopener noreferrer" target="_blank">National Archives — Records of the Selective Service System (Record Group 147)</a> — documentation of the local-board system that registered, classified, and selected eligible men for induction during World War II.</li>
+<li><a href="https://www.loc.gov/collections/diglib/vhp-stories/loc.natlib.afc2001001.102421/transcriptturner?ID=pm0025001" rel="noopener noreferrer" target="_blank">Library of Congress — Ewing H. Miller II Collection, Letter to His Mother (September 28, 1944)</a> — firsthand evidence that wartime military secrecy and censorship could prevent servicemembers from disclosing travel routes and exact locations to family.</li>
+<li><strong>Original Operation Overlord course material — <em>Operation Overlord: Invasion of Normandy. Official Copy</em>, Part 6, “A Soldier’s Mom’s Diary.”</strong> — project provenance for the earlier Mary/Brock diary scenario adapted for this Web Book; it is not an archival diary or primary source.</li>
+</ol>
+<p class="source-note">Source note: “Mary’s Diary” is a Web Book historical-fiction adaptation based on the Mary/Brock diary scenario in the original Operation Overlord course material. Mary and Brock are fictional, and the diary is not an archival primary source. The historical references above support the setting and context; the original course-material entry documents project provenance.</p>
+</section>
+</main>
+<footer>Operation Overlord · Part 6: A Soldier’s Mom’s Diary</footer>
+</div>
+<div aria-label="Enlarged source image" aria-modal="true" class="modal" id="photoModal" role="dialog">
+<div class="modal-inner">
+<button aria-label="Close enlarged image" class="modal-close" id="modalClose" type="button">×</button>
+<img alt="" id="modalImage" src=""/>
+<p class="caption" id="modalCaption"></p>
+</div>
+</div>
+<script>
+(()=>{
+const lenses=[
+  {name:'Date & Situation',category:'Read · Text Evidence',prompt:'What is happening on June 6, 1944? What does Mary learn from the radio, and what does she still not know about Brock?',rule:'The diary says Mary hears that Allied troops have landed in France. It also says, “I do not know where Brock is today.”'},
+  {name:'Words & Details',category:'Notice · Text Evidence',prompt:'Choose two rural or everyday details from the diary. What do details such as cows, biscuits, the garden, chickens, fences, or the radio add to Mary’s perspective?',rule:'Use Mary’s exact details first. Then explain how they make the war feel connected to ordinary life at home.'},
+  {name:'Thoughts & Emotions',category:'Notice · Character Perspective',prompt:'Which lines show Mary’s worry, pride, uncertainty, or determination most clearly? What does she say or do that reveals each feeling?',rule:'Use a specific line before naming an emotion. “Is my boy there?” shows uncertainty; “Bring my boy home” shows fear and hope.'},
+  {name:'Evidence vs. Inference',category:'Interpret · Use Evidence Carefully',prompt:'Test the claim: “Brock is landing in Normandy on D-Day.” Is that supported by the diary? What does Mary actually know?',rule:'Mary does not know where Brock is. Her fear that he could be involved is not evidence that he is on a Normandy beach.'},
+  {name:'Home-Front Perspective',category:'Interpret · Perspective',prompt:'What does the diary suggest about how war could affect a family far from the battlefield? Look at the contrast between worldwide events and ordinary farm chores.',rule:'Mary’s experience gives one home-front perspective. It should not be treated as the experience of every American family.'},
+  {name:'Questions for Context',category:'Context · Check the History',prompt:'Which parts of Mary’s world could you verify with historical sources? What would you research about D-Day radio reports, farm life, military communication, or families waiting for news?',rule:'Historical context helps you verify the larger facts surrounding D-Day and identify what this one perspective cannot answer.'}
+];
+const seen=new Set();let active=-1;
+const q=s=>document.querySelector(s),qa=s=>document.querySelectorAll(s);
+function updateProgress(){q('#progressFill').style.width=Math.round(seen.size/lenses.length*100)+'%';q('#progressText').textContent=`${seen.size} of ${lenses.length} examination lenses explored`;}
+function updateStates(){qa('[data-lens]').forEach(el=>{const i=+el.dataset.lens;el.classList.toggle('done',seen.has(i));el.classList.toggle('active',i===active);});}
+function chooseLens(i){const item=lenses[i];if(!item)return;active=i;seen.add(i);updateProgress();updateStates();q('#detailKicker').textContent=`Examination Lens ${i+1} of ${lenses.length}`;q('#detailName').textContent=item.name;q('#detailCategory').textContent=item.category;q('#detailPrompt').textContent=item.prompt;q('#detailRule').innerHTML='<strong>Evidence Guide:</strong> '+item.rule;}
+qa('[data-lens]').forEach(el=>el.addEventListener('click',()=>chooseLens(+el.dataset.lens)));
+q('#resetBtn').addEventListener('click',()=>{seen.clear();active=-1;updateProgress();updateStates();q('#detailKicker').textContent='Examination Lens';q('#detailName').textContent='Select a lens';q('#detailCategory').textContent='Part 6';q('#detailPrompt').textContent='Choose one of the six lenses. Point to exact language from Mary’s diary before you make an interpretation.';q('#detailRule').innerHTML='<strong>Evidence Guide:</strong> What the diary says, what you infer, and what outside history verifies are three different kinds of claims.';});
+const modal=q('#photoModal'),modalImg=q('#modalImage'),modalCaption=q('#modalCaption'),modalClose=q('#modalClose');let lastFocus=null;
+qa('.zoom-photo').forEach(btn=>btn.addEventListener('click',()=>{lastFocus=btn;modalImg.src=btn.dataset.src;modalImg.alt=btn.querySelector('img').alt;modalCaption.textContent=btn.dataset.caption||'';modal.classList.add('open');modalClose.focus();}));
+function closeModal(){modal.classList.remove('open');modalImg.removeAttribute('src');modalCaption.textContent='';if(lastFocus)lastFocus.focus();}
+modalClose.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+const answers={q1:'b',q2:'c',q3:'a'},wrong={
+  q1:'✗ Try again — choose the statement the text itself directly says.',
+  q2:'✗ Try again — look for the claim that goes beyond what Mary actually states.',
+  q3:'✗ Try again — choose the answer that best shows what Mary’s diary can help us understand.'
+};
+q('#quizForm').addEventListener('submit',e=>{e.preventDefault();let correct=0;for(let i=1;i<=3;i++){const key='q'+i,card=q(`input[name="${key}"]`).closest('.q'),selected=q(`input[name="${key}"]:checked`),fb=q('#f'+i);card.classList.remove('correct','incorrect');fb.textContent='';if(!selected){card.classList.add('incorrect');fb.textContent='Choose an answer before checking this question.';}else if(selected.value===answers[key]){correct++;card.classList.add('correct');fb.textContent='✓ Correct';}else{card.classList.add('incorrect');fb.textContent=wrong[key];}}q('#quizResult').textContent=correct===3?'3 of 3 correct — Quick Check complete.':correct+' of 3 correct. Review the questions marked above and try again.';});
+q('#clearQuiz').addEventListener('click',()=>{q('#quizForm').reset();qa('.quiz-grid .q').forEach(card=>card.classList.remove('correct','incorrect'));qa('.quiz-feedback').forEach(f=>f.textContent='');q('#quizResult').textContent='';});
+updateProgress();
+})();
+</script>
+</body>
+</html>

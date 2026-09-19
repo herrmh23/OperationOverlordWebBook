@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Operation Overlord Web Book — Part 9: Reflections</title>
+<style>
+:root{--navy:#103e67;--navy2:#0b2d49;--rust:#a34f38;--gold:#ad8950;--green:#667648;--paper:#f4efe3;--card:#fffaf0;--ink:#282821;--muted:#6c675b;--line:#d6cab3;--focus:#df9e53}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#dedbd3;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}button{font:inherit;cursor:pointer}a{color:var(--navy)}
+.page{width:min(1150px,calc(100% - 28px));margin:22px auto 50px;background:#fffdf7;box-shadow:0 12px 30px rgba(30,36,40,.12);border:1px solid var(--line)}
+.masthead{padding:26px 48px 20px;border-bottom:4px solid var(--navy);background:linear-gradient(#fffdf8,#f7f2e7)}.series{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--muted)}.part-label{margin-top:10px;color:#2f6e9d;font-size:.9rem;font-weight:800;letter-spacing:.16em}h1{margin:.2rem 0 .1rem;color:var(--navy2);font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.45rem);line-height:1.04}.deck{margin:5px 0 0;color:#37444c;font-size:1.05rem}
+.progress-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:17px;font-size:.86rem;font-weight:800;color:var(--muted)}.track{width:min(320px,100%);height:8px;border-radius:999px;background:#ddd7c9;overflow:hidden}.fill{height:100%;width:0;background:var(--green);transition:width .18s ease}
+.home-nav{padding:16px 48px 0}
+.home-link{display:inline-flex;align-items:center;min-height:44px;border:1px solid #9c9587;background:#fffdf8;color:var(--navy2);border-radius:6px;padding:9px 14px;font-weight:800;text-decoration:none}
+.home-link:hover,.home-link:focus-visible{border-color:var(--navy);outline:3px solid rgba(47,110,157,.17);outline-offset:2px}
+.shell{max-width:none;margin:0;padding:24px 48px 42px}section+section{margin-top:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 4px 18px rgba(48,41,27,.06)}.section-card{padding:18px}.section-card h2{font:700 1.5rem Georgia,serif;margin:0 0 6px;color:var(--navy2)}.section-card>p{margin:0;color:var(--muted)}
+.analysis-kicker,.section-kicker{margin:0 0 5px!important;color:#2f6e9d!important;font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}.source-status{margin-top:14px;padding:13px 14px;background:#eee6d6;border-left:4px solid var(--gold);font-size:.9rem;color:#4b493f}.source-status strong{color:var(--ink)}
+.opening-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:18px;align-items:stretch}.opening-copy h2{font:700 1.55rem Georgia,serif;margin:0 0 8px;color:var(--navy2)}.opening-copy p{margin:0;color:#4f4b42}.opening-copy p+p{margin-top:10px}
+.timeline-visual{border:1px solid #d8ccb5;border-radius:12px;background:#fffdf8;padding:17px;display:flex;flex-direction:column;justify-content:center}.timeline-visual h3{font:700 1.18rem Georgia,serif;color:var(--navy2);margin:0 0 12px}.timeline{display:grid;gap:7px}.moment{display:grid;grid-template-columns:86px 16px 1fr;gap:9px;align-items:start}.moment .date{font-size:.76rem;font-weight:900;color:var(--navy);padding-top:1px;text-align:right}.moment .pin{width:12px;height:12px;margin-top:4px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px #eee4d1}.moment .event{font-size:.82rem;color:#514e45;line-height:1.4}.timeline-note{margin-top:12px;padding-top:10px;border-top:1px solid #ddd1b8;font-size:.78rem;color:var(--muted)}
+.reflection-card{padding:20px;border-top:5px solid var(--navy)}.reflection-card h2{font:700 1.75rem Georgia,serif;color:var(--navy2);margin:0 0 6px}.reflection-intro{margin:0;color:var(--muted)}.fiction-label{margin-top:12px;padding:12px 14px;border:1px solid #d8ccb5;background:#fffdf8;border-radius:9px;font-size:.86rem;color:#55564e}.fiction-label strong{color:var(--navy2)}
+.reflection-text{margin-top:15px;background:#fffdf8;border:1px solid #cfc3ab;border-radius:11px;padding:26px 30px}.reflection-text h3{font:700 1.2rem Georgia,serif;color:var(--navy2);margin:0 0 6px}.reflection-meta{padding-bottom:10px;margin-bottom:17px;border-bottom:1px solid #ddd1b8;color:#786a50;font-size:.82rem;font-weight:800;letter-spacing:.03em}.reflection-text p{margin:0 0 16px;color:#3f3e37;line-height:1.74}.reflection-text p:last-child{margin-bottom:0}.memory-break{margin:22px 0 12px!important;color:var(--rust)!important;font:700 1.08rem Georgia,serif!important;letter-spacing:.01em}.dropcap:first-letter{float:left;font:700 3.4rem/2.6rem Georgia,serif;color:var(--navy);padding:8px 8px 0 0}
+.analysis-layout{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(330px,.78fr);gap:18px;align-items:start}.lens-card{padding:20px;border-top:5px solid var(--navy)}.analysis-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}.lens-card h2{font:700 1.8rem Georgia,serif;margin:0 0 6px;color:var(--navy2)}.analysis-head p{margin:0;color:var(--muted)}
+.sequence{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}.sequence span{border:1px solid #d3c7af;border-radius:999px;background:#fffdf8;padding:7px 8px;text-align:center;font-size:.72rem;font-weight:900;color:#5b584f}.sequence b{color:var(--navy)}
+.lens-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:15px}.lens-group{border:1px solid #d8ccb5;border-radius:11px;background:#fffdf8;padding:14px}.lens-group-label{margin:0 0 9px;font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#786a50}.lens-grid{display:grid;grid-template-columns:1fr;gap:8px}.lens-button{min-height:48px;border:1px solid #c9bea8;border-radius:8px;background:#fffdf8;color:var(--ink);font-weight:800;text-align:left;padding:9px 11px;display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:center}.lens-button .n{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff}.lens-button.done{background:#edf0df}.lens-button.done .n{background:var(--green)}.lens-button.active{box-shadow:inset 0 0 0 2px var(--rust)}.lens-button.active .n{background:var(--rust)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:13px 0 0;font-size:.76rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block;background:var(--navy)}.dot.green{background:var(--green)}.dot.rust{background:var(--rust)}
+.info-panel{padding:20px;position:sticky;top:12px}.kicker{font-size:.7rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#846a3b}.info-panel h2{font:700 1.72rem/1.08 Georgia,serif;margin:7px 0 7px;color:var(--navy2)}.category{display:inline-block;background:#ebe3d3;border-radius:999px;padding:5px 9px;margin:0 0 14px;font-size:.76rem;font-weight:800}.prompt-card{border:1px solid #c7baa1;border-radius:11px;background:#efe6d5;padding:16px}.label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#786a50;margin-bottom:6px}.prompt-text{font-size:1.04rem;line-height:1.6;color:#3f3e37;margin:0}.evidence-rule{margin:14px 0 0;padding-top:13px;border-top:1px solid #d1c3a7;font-size:.88rem;color:#58544b}.tip{margin-top:16px;padding:12px 13px;background:#eee6d6;border-left:4px solid var(--gold);font-size:.82rem;line-height:1.45}
+.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}.context-box{border:1px solid #d8ccb5;border-radius:10px;background:#fffdf8;padding:17px}.context-label{margin:0 0 5px!important;font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.context-box h3{font:700 1.25rem Georgia,serif;color:var(--navy2);margin:0 0 8px}.context-box p{margin:0;color:#55564e}.context-box ul{margin:8px 0 0;padding-left:20px;color:#55564e}.context-box li+li{margin-top:6px}.observe{border-top:5px solid var(--navy)}.observe .context-label{color:var(--navy)!important}.explain{border-top:5px solid var(--gold)}.explain .context-label{color:#846a3b!important}.context-warning{margin-top:14px;padding:11px 13px;background:#eee6d6;border-left:4px solid var(--rust);font-size:.85rem;color:#4d493f}
+.quick{margin-top:38px;padding-top:28px;border-top:4px solid var(--navy)}.quick h2{margin:.15rem 0 1rem;font-family:Georgia,"Times New Roman",serif;color:var(--navy2);font-size:clamp(1.6rem,3vw,2.25rem);line-height:1.18}.quick>p:not(.section-kicker){margin:0;color:#46535b}.qcard{padding:17px 0;border-bottom:1px solid var(--line)}.qcard fieldset{border:0;padding:0;margin:0}.qcard legend{font-weight:800;margin-bottom:10px;font-size:1.02rem}.choice{display:flex;gap:10px;align-items:flex-start;margin:10px 0;padding:8px 10px;border-radius:7px;font-size:.96rem}.choice:hover{background:#f2eee5}.choice input{margin-top:4px;transform:scale(1.08)}.feedback{min-height:1.3em;margin:10px 0 0;font-weight:800}.feedback.correct{color:#2e6a45}.feedback.incorrect{color:#8a3f39}.quiz-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}.btn{min-height:44px;padding:9px 14px;border:1px solid #b8ad96;border-radius:8px;background:#fffdf7;color:var(--ink);font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.btn:focus-visible,.lens-button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}#quizResult{font-weight:800}
+.sources{margin-top:26px;padding:18px}.sources h2{font:700 1.45rem Georgia,serif;margin:0 0 7px;color:var(--navy2)}.source-list{margin:12px 0 0;padding-left:20px;color:#55564e}.source-list li+li{margin-top:7px}.source-list a{font-weight:800}.source-note{margin-top:12px!important;font-size:.8rem!important;color:var(--muted)!important}
+footer{max-width:none;margin:0;padding:0 48px 28px;color:var(--muted);font-size:.78rem}
+@media(max-width:900px){.opening-grid,.analysis-layout,.context-grid{grid-template-columns:1fr}.info-panel{position:static}.sequence{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.page{width:100%;margin:0;border-left:0;border-right:0}.masthead,.home-nav,.shell,footer{padding-left:20px;padding-right:20px}}
+@media(max-width:650px){.shell{padding-left:10px;padding-right:10px}.lens-groups{grid-template-columns:1fr}.sequence{grid-template-columns:1fr 1fr}.reflection-text{padding:20px 16px}.moment{grid-template-columns:76px 14px 1fr}}
+@media print{.home-nav{display:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="series">Operation Overlord · The Invasion of Normandy: D-Day</div>
+  <div class="part-label">PART 9</div>
+  <h1>Reflections</h1>
+  <p class="deck"><em>Historical-Fiction Reflection · Otto Frank Looking Back</em></p>
+  <div class="progress-row"><span>Part 9 of 10</span><div class="track" aria-hidden="true"><div class="fill" id="progressFill"></div></div><span id="progressText">0 of 6 examination lenses explored</span></div>
+</header>
+
+<nav class="home-nav" aria-label="Web Book navigation">
+  <a class="home-link" href="index.html">← Return to Web Book Home</a>
+</nav>
+
+<main class="shell">
+<section class="card section-card opening-grid" aria-labelledby="opening-title">
+  <div class="opening-copy">
+    <p class="analysis-kicker">Opening Historical Context</p>
+    <h2 id="opening-title">One Person Inside a Vast War</h2>
+    <p>On June 6, 1944, Otto Frank and the seven other people hiding in the Secret Annex were still concealed in Nazi-occupied Amsterdam. The Allied landings in Normandy brought real hope, but they did not end the danger surrounding them.</p>
+    <p>The Anne Frank House documents that after the landings, Otto followed the Allied advance by placing pins in a small map. Less than two months later, on August 4, the people in hiding were arrested.</p>
+  </div>
+  <div class="timeline-visual" aria-labelledby="timeline-title">
+    <h3 id="timeline-title">Documented Historical Framework</h3>
+    <div class="timeline">
+      <div class="moment"><div class="date">July 1942</div><div class="pin"></div><div class="event">The Frank family goes into hiding in the Secret Annex.</div></div>
+      <div class="moment"><div class="date">June 6, 1944</div><div class="pin"></div><div class="event">D-Day begins. Otto follows the Allied advance on a small map.</div></div>
+      <div class="moment"><div class="date">Aug. 4, 1944</div><div class="pin"></div><div class="event">The people in hiding are arrested.</div></div>
+      <div class="moment"><div class="date">Jan. 27, 1945</div><div class="pin"></div><div class="event">Soviet troops liberate Auschwitz; Otto survives.</div></div>
+      <div class="moment"><div class="date">June 3–July 18, 1945</div><div class="pin"></div><div class="event">Otto returns to Amsterdam; on July 18 he receives confirmation that Anne and Margot have died.</div></div>
+      <div class="moment"><div class="date">June 25, 1947</div><div class="pin"></div><div class="event">Anne's diary is first published in Dutch.</div></div>
+    </div>
+    <div class="timeline-note">Historical sequence verified with the Anne Frank House and U.S. Holocaust Memorial Museum.</div>
+  </div>
+</section>
+
+<section class="card reflection-card" aria-labelledby="reflection-title">
+  <p class="analysis-kicker">Historical-Fiction Reflection</p>
+  <h2 id="reflection-title">The Pins on the Map</h2>
+  <p class="reflection-intro">An imagined first-person reflection by Otto Frank, looking back thirty years after D-Day.</p>
+  <div class="fiction-label"><strong>Read as historical fiction:</strong> The events are grounded in the historical record, but these are not Otto Frank's actual words, diary entries, or memoir.</div>
+  <article class="reflection-text">
+    <div class="reflection-meta">LOOKING BACK FROM 1974</div>
+    <p class="dropcap">Thirty years have passed since June 6, 1944, yet when I think of that day I do not first picture the beaches of Normandy. I picture a small map in Amsterdam.</p>
+    <p>We had lived in the Secret Annex for nearly two years. Our world had become a handful of rooms, a staircase, a hidden doorway, the sounds from the offices below, and the news that reached us from outside. The war was enormous, but our lives had become very small. We measured danger in footsteps, voices, doors, and the hours when we had to remain quiet.</p>
+
+    <p class="memory-break">June 1944 — Hope</p>
+    <p>Then came the news of the Allied landings in France. Normandy was far from Amsterdam, but the distance seemed to shrink as we listened. Armies had crossed the Channel. Men were fighting their way onto the coast. The occupation had not ended, but at last there was movement from the west that we could follow.</p>
+    <p>I marked the Allied progress on a map with pins. It was a small act, but in hiding small things could carry great meaning. A pin moved forward. A town changed hands. A line on a map shifted. Each change suggested that the world outside the Annex was not frozen forever.</p>
+    <p>Looking back, it is easy to give June 6 a certainty we did not have at the time. We did not know how long the fighting in Normandy would last. We did not know when the Netherlands would be liberated. We certainly did not know what would happen to us. Hope had entered the room, but hope was not the same as safety.</p>
+
+    <p class="memory-break">August 1944 — What We Could Not Know</p>
+    <p>Less than two months later, on August 4, our hiding place was discovered and we were arrested. The map and its pins could not protect us. The armies were moving across Europe, yet our own path led first to Westerbork and then east to Auschwitz.</p>
+    <p>At Auschwitz I was separated from Edith, Anne, and Margot. I know now that I would never see them again. At the time, I could only wait and hope.</p>
+    <p>By the winter I was weak and ill. When the SS evacuated most prisoners from Auschwitz as Soviet troops approached, I remained behind in the sick barracks. On January 27, 1945, Soviet soldiers entered the camp. I was liberated at Auschwitz by troops advancing from the east; the western Allied armies that had landed in Normandy were fighting on another front. No single day or army explains how the war in Europe ended.</p>
+
+    <p class="memory-break">1945 — Return</p>
+    <p>When I finally returned to Amsterdam on June 3, 1945, the war in Europe was over. The helpers who had risked their lives for us had survived. My family had not.</p>
+    <p>During the journey home I had learned that Edith had died in Auschwitz. I still hoped Anne and Margot might return. In July, that hope ended. Women who had been with them in Bergen-Belsen told me that my daughters had died there.</p>
+    <p>Miep then gave me Anne's papers. She had kept them after our arrest, hoping to return them to Anne. Reading the diary was not like recovering the daughter I had lost. It showed me parts of Anne's mind that I had never fully known. Later, when I learned that she had hoped to publish a book after the war, I decided to help make that possible. Her diary appeared in Dutch in 1947.</p>
+
+    <p class="memory-break">Looking Back — History and One Family</p>
+    <p>So what does D-Day mean to me after thirty years?</p>
+    <p>It means hope, certainly. The landings in Normandy were a crucial step in the liberation of Western Europe. The soldiers who crossed the Channel helped push Nazi rule back from the west, while other Allied armies fought on other fronts.</p>
+    <p>But memory asks for more than gratitude. It asks for accuracy. D-Day did not make us safe on June 6. It did not prevent our arrest in August. It did not determine when or how Auschwitz would be liberated. And it did not return my wife or daughters to me.</p>
+    <p>A military map records advances with lines and pins. A family remembers empty chairs, missing voices, and names that must continue to be spoken. Both views belong to history.</p>
+    <p>Perhaps that is what I understand most clearly now. Great events matter because they change the lives of individual people. Yet no great event can explain every life by itself. To remember the war truthfully, we must look at the armies and the maps—and also at the people waiting, hiding, surviving, returning, and mourning.</p>
+  </article>
+</section>
+
+<section class="analysis-layout" aria-labelledby="analysis-title">
+  <div class="card lens-card">
+    <div class="analysis-head"><div><p class="analysis-kicker">Interactive Close Reading</p><h2 id="analysis-title">Examine the Reflection</h2><p>Select each lens. Separate what history documents from what the writer imagines.</p></div></div>
+    <div class="lens-groups">
+      <div class="lens-group"><p class="lens-group-label">Evidence</p><div class="lens-grid">
+        <button class="lens-button" aria-pressed="false" data-lens="facts"><span class="n">1</span><span>Historical Facts</span></button>
+        <button class="lens-button" aria-pressed="false" data-lens="fiction"><span class="n">2</span><span>Imagined Reflection</span></button>
+        <button class="lens-button" aria-pressed="false" data-lens="hindsight"><span class="n">3</span><span>Memory &amp; Hindsight</span></button>
+      </div></div>
+      <div class="lens-group"><p class="lens-group-label">Interpretation</p><div class="lens-grid">
+        <button class="lens-button" aria-pressed="false" data-lens="perspective"><span class="n">4</span><span>Perspective</span></button>
+        <button class="lens-button" aria-pressed="false" data-lens="tone"><span class="n">5</span><span>Language &amp; Tone</span></button>
+        <button class="lens-button" aria-pressed="false" data-lens="history"><span class="n">6</span><span>Individual &amp; History</span></button>
+      </div></div>
+    </div>
+    <p class="legend"><span><i class="dot"></i>Not yet explored</span><span><i class="dot green"></i>Explored</span><span><i class="dot rust"></i>Selected</span></p>
+  </div>
+  <aside class="card info-panel" aria-live="polite">
+    <div class="kicker">Student Prompt</div>
+    <h2 id="lensTitle">Choose a lens</h2>
+    <span class="category" id="lensCategory">Historical thinking</span>
+    <div class="prompt-card"><div class="label">Examine</div><p class="prompt-text" id="lensPrompt">Start with Historical Facts. Then work through all six lenses.</p><p class="evidence-rule" id="lensEvidence"><strong>Evidence Guide:</strong> A believable sentence in historical fiction is not automatically evidence that the real person said or thought it.</p></div>
+    <div class="tip" id="lensTip"><strong>Central question:</strong> How can one person's reflection help us understand the human meaning of a major historical event?</div>
+  </aside>
+</section>
+
+<section class="card section-card" aria-labelledby="context-title">
+  <p class="analysis-kicker">Supporting Historical Context</p>
+  <h2 id="context-title">From Arrest to Return</h2>
+  <p>The opening timeline gives the broad sequence. These details clarify what happened after the hiding place was discovered and what Otto learned after liberation.</p>
+  <div class="context-grid">
+    <div class="context-box observe"><p class="context-label">Documented</p><h3>From Arrest to Liberation</h3><ul>
+      <li>After the August 4 arrest, the eight people from the Secret Annex were sent first to Westerbork and then to Auschwitz-Birkenau.</li>
+      <li>At Auschwitz-Birkenau, Otto was separated from Edith, Anne, and Margot; it was the last time he saw them.</li>
+      <li>When the SS evacuated most prisoners in January 1945, Otto was too ill to leave. Soviet troops entered Auschwitz on January 27 and liberated the prisoners who remained.</li>
+    </ul></div>
+    <div class="context-box explain"><p class="context-label">Documented</p><h3>From Return to Publication</h3><ul>
+      <li>During his journey home, Otto learned that Edith had died in Auschwitz. He returned to Amsterdam on June 3, 1945, still hoping Anne and Margot had survived.</li>
+      <li>On July 18, Otto received confirmation that Anne and Margot had died in Bergen-Belsen. Soon afterward, Miep Gies gave him Anne's surviving diary papers.</li>
+      <li>Otto later worked to fulfill Anne's wish to publish a book about life in hiding. <em>Het Achterhuis</em> first appeared in Dutch on June 25, 1947.</li>
+    </ul></div>
+  </div>
+  <div class="context-warning"><strong>Important distinction:</strong> D-Day was a crucial step in the liberation of Western Europe, but it did not directly liberate Otto Frank. Soviet troops liberated Auschwitz on January 27, 1945.</div>
+</section>
+
+<section class="quick" aria-labelledby="quick-title">
+  <p class="section-kicker">Quick Check</p>
+  <h2 id="quick-title">Check Your Understanding</h2>
+  <p>Use the reflection and historical context to answer all three questions.</p>
+
+  <div class="qcard" id="q1"><fieldset><legend>1. Which description of “The Pins on the Map” is most accurate?</legend>
+    <label class="choice"><input type="radio" name="q1" value="a"/> <span>It is an authentic memoir written by Otto Frank in 1974.</span></label>
+    <label class="choice"><input type="radio" name="q1" value="b"/> <span>It is a project-created historical-fiction reflection built around documented events.</span></label>
+    <label class="choice"><input type="radio" name="q1" value="c"/> <span>It is a transcript of a radio interview with Otto Frank.</span></label>
+    <p class="feedback" id="f1"></p>
+  </fieldset></div>
+
+  <div class="qcard" id="q2"><fieldset><legend>2. Why does the reflection distinguish “hope” from “safety” after D-Day?</legend>
+    <label class="choice"><input type="radio" name="q2" value="a"/> <span>Because the Allied landings brought hope, but Nazi occupation and persecution continued and the people in hiding were arrested in August.</span></label>
+    <label class="choice"><input type="radio" name="q2" value="b"/> <span>Because D-Day failed and the Allied armies immediately withdrew from France.</span></label>
+    <label class="choice"><input type="radio" name="q2" value="c"/> <span>Because the people in the Secret Annex did not hear any news about D-Day.</span></label>
+    <p class="feedback" id="f2"></p>
+  </fieldset></div>
+
+  <div class="qcard" id="q3"><fieldset><legend>3. Which conclusion best fits the historical record?</legend>
+    <label class="choice"><input type="radio" name="q3" value="a"/> <span>D-Day alone directly liberated Otto Frank from Auschwitz.</span></label>
+    <label class="choice"><input type="radio" name="q3" value="b"/> <span>D-Day ended Nazi persecution throughout Europe on June 6, 1944.</span></label>
+    <label class="choice"><input type="radio" name="q3" value="c"/> <span>D-Day was an important part of the Allied defeat of Nazi Germany, while Otto's own liberation came when Soviet troops reached Auschwitz.</span></label>
+    <p class="feedback" id="f3"></p>
+  </fieldset></div>
+
+  <div class="quiz-actions"><button class="btn primary" id="checkAnswers">Check Answers</button><button class="btn" id="clearAnswers">Clear Answers</button><span id="quizResult" aria-live="polite"></span></div>
+</section>
+
+<section class="card sources" aria-labelledby="sources-title">
+  <p class="analysis-kicker">Reference</p>
+  <h2 id="sources-title">Sources</h2>
+  <ul class="source-list">
+    <li><strong>Original Operation Overlord materials:</strong> <em>Operation Overlord: Invasion of Normandy. Official Copy</em>, Part 9, “Otto Frank’s Reflection” — Historical Fiction.</li>
+    <li><a href="https://www.annefrank.org/en/anne-frank/main-characters/otto-frank/" target="_blank" rel="noopener noreferrer">Anne Frank House — Otto Frank</a> — hiding, D-Day map pins, arrest, Auschwitz, liberation, return, and Anne's diary.</li>
+    <li><a href="https://www.annefrank.org/en/anne-frank/secret-annex/room-otto-edith-margot-frank/" target="_blank" rel="noopener noreferrer">Anne Frank House — Hope in the Secret Annex after the invasion of Normandy</a> — the people in hiding's reaction to D-Day, their hope for an end to the war, and Otto's use of map pins to follow the Allied advance.</li>
+    <li><a href="https://research.annefrank.org/en/gebeurtenissen/5db3a57f-942d-49e5-9478-631a0e8ad789/" target="_blank" rel="noopener noreferrer">Anne Frank House Research — Otto Frank returns to Amsterdam</a> — June 3 return, July 18 confirmation of Anne and Margot's deaths, and receipt of the diary.</li>
+    <li><a href="https://www.annefrank.org/en/anne-frank/diary/complete-works-anne-frank/" target="_blank" rel="noopener noreferrer">Anne Frank House — The complete works of Anne Frank</a> — Miep Gies and Bep Voskuijl finding Anne's writings, Miep preserving them in hopes of returning them to Anne, and later giving them to Otto.</li>
+    <li><a href="https://www.annefrank.org/en/anne-frank/go-in-depth/the-first-edition-of-het-achterhuis/" target="_blank" rel="noopener noreferrer">Anne Frank House — The first edition of <em>Het Achterhuis</em></a> — June 25, 1947 publication.</li>
+    <li><a href="https://encyclopedia.ushmm.org/content/en/article/anne-frank-biography" target="_blank" rel="noopener noreferrer">United States Holocaust Memorial Museum — Anne Frank Biography</a> — arrest, Westerbork, Auschwitz, and Bergen-Belsen chronology.</li>
+    <li><a href="https://encyclopedia.ushmm.org/content/en/article/d-day?series=13" target="_blank" rel="noopener noreferrer">United States Holocaust Memorial Museum — D-Day</a> — Operation Overlord, the Normandy Campaign, and D-Day's crucial role in the Allied defeat of Nazi Germany.</li>
+  </ul>
+  <p class="source-note">The fictional reflection was written for this Web Book from documented historical events. No sentence from the reflection should be cited as an authentic quotation from Otto Frank.</p>
+</section>
+</main>
+<footer>Operation Overlord · Part 9 of 10 · Reflections</footer>
+</div>
+
+<script>
+const lensData={
+ facts:{title:'Historical Facts',category:'Evidence',prompt:'Which events in the reflection can be checked against reliable historical sources?',evidence:'Documented anchors include the Secret Annex, D-Day on June 6, Otto tracking Allied progress on a map, the August 4 arrest, Auschwitz, Soviet liberation, his return to Amsterdam, and publication of Anne\'s diary.',tip:'A historical-fiction narrative becomes stronger when its factual framework can be verified independently.'},
+ fiction:{title:'Imagined Reflection',category:'Source literacy',prompt:'Which parts of the narrative are the writer imagining rather than documenting?',evidence:'The first-person wording, private thoughts, emotional transitions, and phrases such as “hope was not the same as safety” are project-created. They may be plausible, but they are not Otto Frank quotations.',tip:'Plausible is not the same as documented. Ask: Could I prove that Otto actually said this?'},
+ hindsight:{title:'Memory & Hindsight',category:'Perspective',prompt:'What does the older narrator know that Otto Frank could not have known on June 6, 1944?',evidence:'Looking backward, the narrator knows about the August arrest, Auschwitz, the deaths of Edith, Anne, and Margot, the Soviet liberation of Auschwitz, and the later publication of Anne\'s diary.',tip:'Hindsight changes meaning. A later reflection can connect events that a person living through them could not yet connect.'},
+ perspective:{title:'Perspective',category:'Interpretation',prompt:'How does seeing D-Day through a person in hiding change the scale of the event?',evidence:'The narrative shifts attention from beaches and armies to a hidden family following events by radio and map. It shows how a military campaign could create hope far from the battlefield without immediately ending danger.',tip:'Perspective does not replace the larger history; it reveals what that history meant to one life.'},
+ tone:{title:'Language & Tone',category:'Close reading',prompt:'Which recurring images make the reflection restrained rather than melodramatic?',evidence:'The map, pins, small rooms, footsteps, empty chairs, missing voices, and the contrast between “hope” and “safety” carry emotion without graphic description or exaggerated claims.',tip:'Notice how concrete objects can carry emotional meaning more quietly than dramatic declarations.'},
+ history:{title:'Individual & History',category:'Synthesis',prompt:'What does the reflection suggest about the relationship between a major event and one person\'s life?',evidence:'D-Day mattered greatly to the defeat of Nazi Germany, but it did not explain every part of Otto Frank\'s experience. His story also involved hiding, deportation, Soviet liberation, family loss, return, and Anne\'s diary.',tip:'Good historical thinking connects the large scale and the human scale without pretending they are the same thing.'}
+};
+const explored=new Set();
+const buttons=[...document.querySelectorAll('.lens-button')];
+const fill=document.getElementById('progressFill'), progressText=document.getElementById('progressText');
+function updateProgress(){const n=explored.size;fill.style.width=(n/6*100)+'%';progressText.textContent=`${n} of 6 examination lenses explored`;}
+buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});btn.classList.add('active','done');btn.setAttribute('aria-pressed','true');const key=btn.dataset.lens;explored.add(key);const d=lensData[key];document.getElementById('lensTitle').textContent=d.title;document.getElementById('lensCategory').textContent=d.category;document.getElementById('lensPrompt').textContent=d.prompt;document.getElementById('lensEvidence').innerHTML='<strong>Evidence Guide:</strong> '+d.evidence;document.getElementById('lensTip').innerHTML='<strong>Think about it:</strong> '+d.tip;updateProgress();}));
+
+const answers={q1:'b',q2:'a',q3:'c'};
+const feedback={
+ q1:{correct:'✓ Correct — the narrative is project-created historical fiction grounded in documented events.',incorrect:'✗ Incorrect — the page clearly labels the reflection as project-created historical fiction, not Otto Frank\'s actual words.'},
+ q2:{correct:'✓ Correct — D-Day brought hope, but danger and Nazi persecution continued.',incorrect:'✗ Incorrect — D-Day did not immediately end occupation or make the people in hiding safe.'},
+ q3:{correct:'✓ Correct — D-Day mattered to the western campaign, while Soviet troops liberated Auschwitz.',incorrect:'✗ Incorrect — no single event or army accounts for every part of the war or Otto Frank\'s liberation.'}
+};
+document.getElementById('checkAnswers').addEventListener('click',()=>{let score=0;for(let i=1;i<=3;i++){const q='q'+i,picked=document.querySelector(`input[name="${q}"]:checked`),fb=document.getElementById('f'+i);fb.classList.remove('correct','incorrect');if(!picked){fb.textContent='Choose an answer first.';continue;}if(picked.value===answers[q]){score++;fb.classList.add('correct');fb.textContent=feedback[q].correct;}else{fb.classList.add('incorrect');fb.textContent=feedback[q].incorrect;}}document.getElementById('quizResult').textContent=`${score} of 3 correct${score===3?' — Quick Check complete.':'.'}`;});
+document.getElementById('clearAnswers').addEventListener('click',()=>{document.querySelectorAll('.quick input[type="radio"]').forEach(i=>i.checked=false);document.querySelectorAll('.feedback').forEach(f=>{f.textContent='';f.classList.remove('correct','incorrect');});document.getElementById('quizResult').textContent='';});
+</script>
+</body>
+</html>

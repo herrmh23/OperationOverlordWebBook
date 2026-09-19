@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operation Overlord Web Book — Part 4 v5</title>
+<style>
+:root {
+  --navy:#123f62; --navy-dark:#0b2c45; --blue:#2f6e9d;
+  --paper:#f7f3e8; --paper-2:#fffdf7; --ink:#20272c;
+  --muted:#65717a; --line:#c9c2b3; --olive:#69745a;
+  --gold:#a77e39; --success:#2e6a45; --danger:#8a3f39;
+  --shadow:0 12px 30px rgba(30,36,40,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:#dedbd3;font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+button{font:inherit}
+.page{width:min(1150px,calc(100% - 28px));margin:22px auto 50px;background:var(--paper-2);box-shadow:var(--shadow);border:1px solid #cbc5b7}
+.masthead{padding:26px 48px 20px;border-bottom:4px solid var(--navy);background:linear-gradient(#fffdf8,#f7f2e7)}
+.series{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--muted)}
+.part-label{margin-top:10px;color:var(--blue);font-size:.9rem;font-weight:800;letter-spacing:.16em}
+h1{margin:.2rem 0 .1rem;color:var(--navy-dark);font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,4vw,3.45rem);line-height:1.04}
+.deck{margin:5px 0 0;color:#37444c;font-size:1.05rem}
+.content{padding:30px 48px}
+.home-nav{
+  padding:16px 48px 0;
+}
+.home-link{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  border:1px solid #9c9587;
+  background:#fffdf8;
+  color:var(--navy-dark);
+  border-radius:6px;
+  padding:9px 14px;
+  font-weight:800;
+  text-decoration:none;
+}
+.home-link:hover,.home-link:focus-visible{
+  border-color:var(--navy);
+  outline:3px solid rgba(47,110,157,.17);
+  outline-offset:2px;
+}
+.section-kicker{margin:0 0 5px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+h2{margin:.15rem 0 1rem;font-family:Georgia,"Times New Roman",serif;color:var(--navy-dark);font-size:clamp(1.6rem,3vw,2.25rem);line-height:1.18}
+h3{color:var(--navy-dark);margin:.25rem 0 .4rem;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem}
+.genre-note{border-left:5px solid var(--gold);padding:12px 16px;margin:0 0 24px;background:#f4eee1;color:#475159}
+.context-copy{margin:-4px 0 18px;color:#46535b;max-width:900px}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0 28px}
+.photo-card{margin:0;border:1px solid var(--line);background:#f0ebdf;padding:10px}
+.photo-card button{display:block;border:0;padding:0;background:transparent;width:100%;cursor:zoom-in}
+.photo-card img{display:block;width:100%;height:310px;object-fit:cover;border:1px solid #9b9486;filter:saturate(.84) contrast(1.03)}
+.photo-card figcaption{padding:9px 5px 2px;font-size:.88rem;color:#515b61}
+.people-id{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #c9c2b3;color:#2f3940;line-height:1.42}
+.people-id strong{color:#123f62}
+.transcript-section{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:27px 0 28px;margin:2px 0 30px}
+.transcript-card{font-family:Georgia,"Times New Roman",serif;font-size:1.02rem;background:#fffdf8;border-left:5px solid var(--gold);padding:18px 20px;max-width:900px}
+.transcript-card p{margin:0 0 .82rem}
+.transcript-card p:last-child{margin-bottom:0}
+.transcript-note{margin:10px 0 0;color:#626c72;font-size:.84rem;max-width:900px}
+.explore-head{margin-top:6px}
+.subheading{margin-top:-7px;color:#59656c;max-width:820px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:17px 0 15px}
+.control{min-height:44px;border:1px solid #9c9587;background:#fffdf8;color:#25333c;border-radius:6px;padding:9px 14px;font-weight:700;cursor:pointer}
+.control:hover,.control:focus-visible{border-color:var(--navy);outline:3px solid rgba(47,110,157,.17);outline-offset:2px}
+.explore-status{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:3px 0 10px;color:#5c666d;font-size:.9rem}
+.progress-track{flex:1;max-width:320px;height:8px;background:#ddd7c9;border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:var(--olive);transition:width .2s ease}
+.source-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.85fr);gap:20px;align-items:start}
+.source-panel{border:1px solid #aaa395;background:#e9e3d6;padding:10px;min-width:0}
+.source-viewport{position:relative;overflow:auto;background:#d7d1c4;border:1px solid #8f9ca1}
+.source-stage{position:relative;transform-origin:top left;transition:width .2s ease;width:100%;background:#d7d1c4;padding:12px 0 12px 12px}
+.source-stage img{display:block;width:84%;height:auto;border:1px solid #a79f90;box-shadow:0 3px 12px rgba(0,0,0,.12);background:#efe4c9}
+.hotspot{position:absolute;left:91.5%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;border:3px solid white;background:var(--navy);color:white;box-shadow:0 3px 9px rgba(0,0,0,.35);cursor:pointer;z-index:5;display:grid;place-items:center;font-weight:800}
+.hotspot::before{content:"";position:absolute;right:100%;top:50%;width:42px;border-top:2px solid rgba(18,63,98,.62);transform:translateY(-50%)}
+.source-panel:not(.guides) .hotspot::before{display:none}
+.hotspot:hover,.hotspot:focus-visible,.hotspot.active{background:var(--gold);color:#15191c;outline:3px solid rgba(255,255,255,.85);outline-offset:2px}
+.hotspot.visited::after{content:"✓";position:absolute;right:-7px;top:-8px;background:var(--success);color:white;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;font-size:.68rem;border:2px solid white}
+.info-panel{min-height:390px;border:1px solid var(--line);background:#fbf8f0;padding:22px}
+.info-number{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:white;font-weight:800;margin-bottom:12px}
+.info-eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.11em;font-size:.74rem}
+.info-panel p{margin:.65rem 0}
+.placeholder{color:#657079;display:flex;min-height:300px;flex-direction:column;justify-content:center}
+.source-badge{display:inline-block;margin:.1rem 0 .5rem;padding:3px 7px;border:1px solid #c7b991;background:#f4eee1;color:#65512b;font-size:.76rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.doc-phrase{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:#3f4a50}
+.source-focus{margin:.65rem 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:.92rem}
+.index-label{margin:18px 0 7px;text-transform:uppercase;letter-spacing:.13em;color:#616c72;font-size:.78rem;font-weight:800}
+.index{display:flex;flex-wrap:wrap;gap:8px}
+.index-btn{width:44px;height:44px;border-radius:5px;background:#fffdf8;border:1px solid #918b80;color:var(--navy-dark);cursor:pointer;font-weight:800}
+.index-btn:hover,.index-btn:focus-visible,.index-btn.active{background:var(--navy);color:white;outline:3px solid rgba(47,110,157,.17);outline-offset:2px}
+.index-btn.visited{border-color:var(--success);box-shadow:inset 0 -4px 0 var(--success)}
+.source-index-note{font-size:.86rem;color:#5b656b;margin:8px 0 0}
+.source-credit{display:block;margin-top:9px;font-size:.76rem;color:#6c716f;line-height:1.42}
+.quick{margin-top:38px;padding-top:28px;border-top:4px solid var(--navy)}
+.qcard{padding:17px 0;border-bottom:1px solid var(--line)}
+.qcard fieldset{border:0;padding:0;margin:0}
+.qcard legend{font-weight:800;margin-bottom:10px}
+.option{display:flex;align-items:flex-start;gap:10px;margin:8px 0;padding:9px 11px;border-radius:5px;border:1px solid transparent}
+.option:hover{background:#f4f0e7}
+.option input{margin-top:5px;transform:scale(1.16)}
+.feedback{margin-top:10px;min-height:32px;font-weight:800}
+.feedback.correct{color:var(--success)}
+.feedback.incorrect{color:#8a3c2f}
+.feedback.missing{color:#6c6254}
+.check-actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:19px}
+.primary{min-height:46px;border:0;border-radius:6px;background:var(--navy);color:white;padding:10px 18px;font-weight:800;cursor:pointer}
+.primary:hover,.primary:focus-visible{background:var(--navy-dark);outline:3px solid rgba(47,110,157,.2);outline-offset:2px}
+.score{min-height:46px;display:flex;align-items:center;font-weight:800;color:var(--navy-dark)}
+.sources-box{margin:28px 0 0;padding:16px 18px;background:#f5f1e7;border:1px solid var(--line);font-size:.82rem;color:#5d666b}
+.sources-box h2{margin:0 0 .45rem;font-size:1.35rem}
+.sources-box p{margin:.25rem 0 .6rem}
+.sources-box strong{color:#34424a}
+.sources-box a{color:var(--navy);font-weight:700}
+.source-list{margin:.55rem 0 0;padding-left:1.25rem}
+.source-list li{margin:.6rem 0}
+.footer{margin-top:38px;padding:18px 48px 24px;border-top:1px solid var(--line);color:#6a7379;font-size:.78rem;background:#f5f0e5}
+.modal{position:fixed;inset:0;z-index:50;display:none;place-items:center;background:rgba(10,17,22,.87);padding:22px}
+.modal.open{display:grid}
+.modal-inner{max-width:min(1100px,95vw);max-height:90vh;position:relative}
+.modal img{display:block;max-width:100%;max-height:82vh;object-fit:contain;background:white;border:5px solid #eee7d8}
+.modal-caption{color:white;text-align:center;padding-top:8px}
+.modal-close{position:absolute;top:-16px;right:-16px;width:44px;height:44px;border-radius:50%;border:2px solid white;background:var(--navy-dark);color:white;font-size:1.3rem;cursor:pointer}
+@media(max-width:800px){
+  .page{width:100%;margin:0;border-left:0;border-right:0}
+  .masthead,.home-nav,.content,.footer{padding-left:20px;padding-right:20px}
+  .photo-grid,.source-layout{grid-template-columns:1fr}
+  .photo-card img{height:auto;max-height:420px}
+  .info-panel{min-height:0}
+  .explore-status{align-items:flex-start;flex-direction:column}
+  .progress-track{width:100%;max-width:none}
+  .source-stage img{width:84%}
+  .hotspot{left:92%}
+}
+@media(max-width:520px){
+  .content{padding-top:22px}
+  .source-panel{padding:6px}
+  .source-stage{padding-left:5px}
+  .source-stage img{width:80%}
+  .hotspot{left:91%;width:34px;height:34px;font-size:.86rem}
+  .hotspot::before{width:28px}
+}
+@media print{
+  body{background:white}
+  .page{width:100%;margin:0;box-shadow:none;border:0}
+  .home-nav,.controls,.hotspot,.index,.quick,.modal{display:none!important}
+  .source-layout{display:block}
+  .info-panel{margin-top:14px}
+}
+</style>
+</head>
+<body>
+<main class="page" id="part4">
+<header class="masthead">
+  <div class="series">Operation Overlord · The Invasion of Normandy: D-Day</div>
+  <div class="part-label">PART 4</div>
+  <h1>In Case of Failure</h1>
+  <p class="deck"><em>Primary Document · Military Orders</em> · A commander prepares for the possibility of defeat.</p>
+</header>
+<nav class="home-nav" aria-label="Web Book navigation">
+  <a class="home-link" href="index.html">← Return to Web Book Home</a>
+</nav>
+<div class="content">
+  <p class="section-kicker">Before You Examine the Source</p>
+  <h2>A message Eisenhower hoped he would never use</h2>
+  <div class="genre-note"><strong>Genre note:</strong> A primary document comes directly from the time being studied. This handwritten note was prepared by General Dwight D. Eisenhower on June 5, 1944, in case the Normandy invasion failed.</div>
+  <section aria-labelledby="context-title">
+    <h2 id="context-title">Historical Context</h2>
+    <p class="context-copy">On June 5, 1944, Eisenhower gave the final order to launch Operation Overlord despite uncertain weather and the danger of attacking a heavily defended coast. Later that day, he wrote a short statement to release if the Allied landings failed. The note praises the forces carrying out the invasion and places responsibility for the decision on Eisenhower himself. It was never needed.</p>
+    <div class="photo-grid">
+      <figure class="photo-card">
+        <button type="button" class="zoom-photo" data-src="assets/Operation_Overlord_Web_Book_Part_4_v5_LOCKED/image_01.jpg" data-caption="General Dwight D. Eisenhower speaks with American paratroopers in England on June 5, 1944, shortly before they depart for Normandy. U.S. Army Signal Corps / National Archives, photograph 111-SC-194399, NAID 531217; public domain.">
+          <img src="assets/Operation_Overlord_Web_Book_Part_4_v5_LOCKED/image_01.jpg" alt="General Dwight D. Eisenhower speaking with American paratroopers in England on June 5, 1944">
+        </button>
+        <figcaption><strong>Eisenhower with paratroopers, June 5, 1944.</strong> Before the airborne assault began, Eisenhower visited men preparing to fly to Normandy.<span class="people-id"><strong>What to notice:</strong> The decision to invade was strategic, but its consequences would be carried by individual soldiers.</span><span class="source-credit"><strong>Photo source:</strong> U.S. Army Signal Corps / National Archives, photograph 111-SC-194399, National Archives Identifier 531217; public domain.</span></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <button type="button" class="zoom-photo" data-src="assets/Operation_Overlord_Web_Book_Part_4_v5_LOCKED/image_02.jpg" data-caption="American soldiers leave a U.S. Coast Guard landing craft and move toward the Normandy coast on June 6, 1944. Photograph by Robert F. Sargent, U.S. Coast Guard / National Archives, photograph 26-G-2343, NAID 513173; public domain.">
+          <img src="assets/Operation_Overlord_Web_Book_Part_4_v5_LOCKED/image_02.jpg" alt="American soldiers leaving a landing craft and moving through the surf toward the Normandy coast on D-Day">
+        </button>
+        <figcaption><strong>American soldiers landing in Normandy, June 6, 1944.</strong> Assault troops moved from landing craft into surf and enemy fire as the invasion began.<span class="people-id"><strong>What to notice:</strong> The landings had to establish a foothold on the coast. Failure could have forced the Allies to withdraw.</span><span class="source-credit"><strong>Photo source:</strong> Robert F. Sargent, U.S. Coast Guard / National Archives, photograph 26-G-2343, National Archives Identifier 513173; public domain.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="transcript-section" aria-labelledby="transcript-title">
+    <p class="section-kicker">Read the Primary Source</p>
+    <h2 id="transcript-title">Eisenhower’s contingency message</h2>
+    <div class="transcript-card" aria-label="Transcript of Eisenhower's In Case of Failure message">
+      <p>“Our landings in the Cherbourg-Havre area have failed to gain a satisfactory foothold and I have withdrawn the troops. My decision to attack at this time and place was based upon the best information available. The troops, the air and the Navy did all that Bravery and devotion to duty could do. If any blame or fault attaches to the attempt it is mine alone.”</p>
+    </div>
+    <p class="transcript-note"><strong>Archival note:</strong> Eisenhower wrote the message on June 5, 1944, but mistakenly dated it “July 5.” His naval aide, Captain Harry Butcher, preserved the discarded note after the invasion succeeded.</p>
+  </section>
+
+  <section aria-labelledby="explore-title">
+    <p class="section-kicker">Explore</p>
+    <h2 class="explore-head" id="explore-title">Examine Eisenhower’s “In Case of Failure” Note</h2>
+    <p class="subheading">Select a numbered point beside the handwritten note—or use the Source Index—to examine six details that reveal Eisenhower’s thinking, leadership, and sense of responsibility.</p>
+    <div class="controls" aria-label="Document controls">
+      <button type="button" class="control" id="zoomBtn">Zoom to 125%</button>
+      <button type="button" class="control" id="guidesBtn">Hide Guides</button>
+      <button type="button" class="control" id="resetBtn">Reset</button>
+    </div>
+    <div class="explore-status"><span id="progressText">0 of 6 source points explored</span><div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div></div>
+    <div class="source-layout">
+      <div>
+        <div class="source-panel guides" id="sourcePanel">
+          <div class="source-viewport" id="sourceViewport">
+            <div class="source-stage" id="sourceStage">
+              <img src="assets/Operation_Overlord_Web_Book_Part_4_v5_LOCKED/image_03.jpg" alt="Handwritten In Case of Failure note drafted by General Dwight D. Eisenhower on June 5, 1944">
+              <button type="button" class="hotspot" data-item="1" style="top:15%;" aria-label="Source point 1: The failed foothold"><span>1</span></button>
+              <button type="button" class="hotspot" data-item="2" style="top:34%;" aria-label="Source point 2: Withdrawal"><span>2</span></button>
+              <button type="button" class="hotspot" data-item="3" style="top:48%;" aria-label="Source point 3: Best information available"><span>3</span></button>
+              <button type="button" class="hotspot" data-item="4" style="top:69%;" aria-label="Source point 4: Credit to the forces"><span>4</span></button>
+              <button type="button" class="hotspot" data-item="5" style="top:83%;" aria-label="Source point 5: Mine alone"><span>5</span></button>
+              <button type="button" class="hotspot" data-item="6" style="top:94%;" aria-label="Source point 6: July 5"><span>6</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="index-label">Source Index</div>
+        <div class="index" aria-label="Source Index">
+          <button type="button" class="index-btn" data-item="1" aria-label="Open source point 1: The failed foothold">1</button>
+          <button type="button" class="index-btn" data-item="2" aria-label="Open source point 2: Withdrawal">2</button>
+          <button type="button" class="index-btn" data-item="3" aria-label="Open source point 3: Best information available">3</button>
+          <button type="button" class="index-btn" data-item="4" aria-label="Open source point 4: Credit to the forces">4</button>
+          <button type="button" class="index-btn" data-item="5" aria-label="Open source point 5: Mine alone">5</button>
+          <button type="button" class="index-btn" data-item="6" aria-label="Open source point 6: July 5">6</button>
+        </div>
+        <p class="source-index-note">The numbered guides sit beside the document so Eisenhower’s original handwriting remains visible.</p>
+        <div class="source-credit">Document: “In Case of Failure” message, June 5, 1944 (misdated July 5). Dwight D. Eisenhower Presidential Library / National Archives and Records Administration, NAID 186470.</div>
+      </div>
+      <aside class="info-panel" id="infoPanel" aria-live="polite">
+        <div class="placeholder"><div class="info-number">?</div><h3>Select a source point</h3><p>Use a number beside the note or in the Source Index. The explanation will appear here while the original document remains visible.</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="quick" aria-labelledby="quick-title">
+    <p class="section-kicker">Quick Check</p>
+    <h2 id="quick-title">Check Your Understanding</h2>
+    <p>Answer all three questions, then choose <strong>Check Answers</strong>. Each question will tell you whether your response is correct. If you miss one, revise your answer and try again.</p>
+    <form id="quizForm">
+      <div class="qcard" data-q="1"><fieldset><legend>1. Why did Eisenhower prepare the “In Case of Failure” note?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"> To announce that the invasion had already succeeded</label>
+        <label class="option"><input type="radio" name="q1" value="b"> To issue a statement if the Allied landings failed and the troops were withdrawn</label>
+        <label class="option"><input type="radio" name="q1" value="c"> To criticize the soldiers and sailors for poor preparation</label>
+      </fieldset><div class="feedback" id="f1" aria-live="polite"></div></div>
+      <div class="qcard" data-q="2"><fieldset><legend>2. What does the phrase “If any blame or fault attaches to the attempt it is mine alone” reveal most clearly?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"> Eisenhower accepts personal responsibility for the decision to invade</label>
+        <label class="option"><input type="radio" name="q2" value="b"> Eisenhower believes the Navy is mainly responsible for the outcome</label>
+        <label class="option"><input type="radio" name="q2" value="c"> Eisenhower is unsure who made the final decision</label>
+      </fieldset><div class="feedback" id="f2" aria-live="polite"></div></div>
+      <div class="qcard" data-q="3"><fieldset><legend>3. What is unusual about the date written at the bottom of the note?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"> Eisenhower wrote no date at all</label>
+        <label class="option"><input type="radio" name="q3" value="b"> He dated it June 6, the morning of the invasion</label>
+        <label class="option"><input type="radio" name="q3" value="c"> He wrote “July 5” even though the note was written on June 5</label>
+      </fieldset><div class="feedback" id="f3" aria-live="polite"></div></div>
+      <div class="check-actions"><button type="submit" class="primary">Check Answers</button><button type="button" class="control" id="clearQuiz">Clear Answers</button><div class="score" id="score" aria-live="polite"></div></div>
+    </form>
+  </section>
+
+  <section class="sources-box" aria-labelledby="sources-title">
+    <h2 id="sources-title">Sources / References</h2>
+    <p>Primary archival records and official historical references used in Part 4.</p>
+    <ol class="source-list">
+      <li><a href="https://catalog.archives.gov/id/186470" target="_blank" rel="noopener noreferrer"><strong>“In Case of Failure” Message Drafted by General Dwight Eisenhower in Case the D-Day Invasion Failed</strong></a> — Dwight D. Eisenhower Presidential Library / National Archives and Records Administration, June 5, 1944, National Archives Identifier 186470.</li>
+      <li><a href="https://catalog.archives.gov/id/531217" target="_blank" rel="noopener noreferrer"><strong>Photograph of General Dwight D. Eisenhower Giving the Order of the Day</strong></a> — U.S. Army Signal Corps / National Archives and Records Administration, photograph 111-SC-194399, National Archives Identifier 531217; public domain.</li>
+      <li><a href="https://catalog.archives.gov/id/513173" target="_blank" rel="noopener noreferrer"><strong>Landing on the Coast of France Under Heavy Nazi Machine Gun Fire</strong></a> — Photograph by Robert F. Sargent, U.S. Coast Guard / National Archives and Records Administration, photograph 26-G-2343, National Archives Identifier 513173; public domain.</li>
+      <li><a href="https://www.archives.gov/research/military/ww2/d-day" target="_blank" rel="noopener noreferrer"><strong>Records Relating to D-Day</strong></a> — National Archives and Records Administration. Used to verify the archival identifiers and D-Day historical context.</li>
+      <li><a href="https://www.eisenhowerlibrary.gov/research/online-documents/world-war-ii-d-day-invasion-normandy" target="_blank" rel="noopener noreferrer"><strong>World War II: D-Day, The Invasion of Normandy</strong></a> — Dwight D. Eisenhower Presidential Library. Used to verify the June 5, 1944 contingency message and its mistaken “July 5” date.</li>
+    </ol>
+  </section>
+</div>
+<footer class="footer">Operation Overlord Web Book · Part 4 v5 · Built from the locked reusable Part structure.</footer>
+</main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Enlarged historical image"><div class="modal-inner"><button type="button" class="modal-close" id="modalClose" aria-label="Close enlarged image">×</button><img id="modalImg" alt=""><div class="modal-caption" id="modalCaption"></div></div></div>
+<script>
+(() => {
+  const items = [
+    {n:1,title:"The Failed Foothold",eyebrow:"WHAT WOULD FAILURE MEAN?",phrase:"“failed to gain a satisfactory foothold”",text:"Eisenhower begins with the military result that would make the invasion unsuccessful: Allied forces would be unable to establish a secure position on the Normandy coast. The wording is direct and factual rather than emotional.",think:"Why might a commander begin a failure statement with a plain description of what happened?"},
+    {n:2,title:"Withdrawal",eyebrow:"THE COMMAND DECISION",phrase:"“I have withdrawn the troops.”",text:"If the landings could not hold the coast, Eisenhower expected to order the invading forces back. The sentence uses “I,” making clear that the withdrawal would be his command decision.",think:"How does the use of the word “I” shape the tone of the note?"},
+    {n:3,title:"Best Information Available",eyebrow:"DECISION UNDER UNCERTAINTY",phrase:"“based upon the best information available”",text:"Eisenhower explains that the choice of time and place was made from the strongest information commanders had at the moment. He does not claim that the information guaranteed success; he explains the basis for the decision.",think:"What does this phrase suggest about making major decisions when the outcome cannot be known in advance?"},
+    {n:4,title:"Credit to the Forces",eyebrow:"WHO IS NOT BLAMED?",phrase:"“The troops, the air and the Navy...”",text:"Eisenhower separates the performance of the Allied forces from the possibility of failure. He praises their bravery and devotion to duty instead of blaming the people who carried out the operation.",think:"Why is it significant that he gives credit to the forces before discussing blame?"},
+    {n:5,title:"Mine Alone",eyebrow:"PERSONAL RESPONSIBILITY",phrase:"“it is mine alone”",text:"The final sentence is the heart of the note. Eisenhower says that any blame for the attempt belongs to him. As Supreme Commander, he accepts responsibility for ordering the invasion rather than shifting fault to subordinates.",think:"What does this final sentence reveal about Eisenhower’s view of command responsibility?"},
+    {n:6,title:"The Misdated Note",eyebrow:"AN ARCHIVAL CLUE",phrase:"“July 5”",text:"Eisenhower wrote the note on June 5, 1944, but dated it “July 5.” The National Archives identifies the date as a mistake. The error is a small human detail in a document written under enormous pressure.",think:"Why can a simple mistake in a primary document be historically interesting?"}
+  ];
+  const infoPanel=document.getElementById('infoPanel');
+  const sourcePanel=document.getElementById('sourcePanel');
+  const sourceStage=document.getElementById('sourceStage');
+  const sourceViewport=document.getElementById('sourceViewport');
+  const progressText=document.getElementById('progressText');
+  const progressFill=document.getElementById('progressFill');
+  const zoomBtn=document.getElementById('zoomBtn');
+  const guidesBtn=document.getElementById('guidesBtn');
+  const resetBtn=document.getElementById('resetBtn');
+  const visited=new Set();
+  let zoomed=false;
+  function getItem(n){return items.find(x=>x.n===Number(n));}
+  function renderItem(n){
+    const item=getItem(n); if(!item)return;
+    visited.add(item.n);
+    infoPanel.innerHTML=`<div class="info-number">${item.n}</div><div class="info-eyebrow">${item.eyebrow}</div><h3>${item.title}</h3><div class="source-badge">Source Analysis</div><p class="doc-phrase">${item.phrase}</p><p>${item.text}</p><p class="source-focus"><strong>Think about it:</strong> ${item.think}</p>`;
+    document.querySelectorAll('[data-item]').forEach(el=>{
+      const active=Number(el.dataset.item)===item.n;
+      el.classList.toggle('active',active);
+      if(visited.has(Number(el.dataset.item)))el.classList.add('visited');
+    });
+    updateProgress();
+  }
+  function updateProgress(){const count=visited.size;progressText.textContent=`${count} of 6 source points explored`;progressFill.style.width=`${(count/6)*100}%`;}
+  document.querySelectorAll('.hotspot,.index-btn').forEach(btn=>btn.addEventListener('click',()=>renderItem(btn.dataset.item)));
+  zoomBtn.addEventListener('click',()=>{zoomed=!zoomed;sourceStage.style.width=zoomed?'125%':'100%';zoomBtn.textContent=zoomed?'Return to 100%':'Zoom to 125%';if(!zoomed){sourceViewport.scrollLeft=0;sourceViewport.scrollTop=0;}});
+  guidesBtn.addEventListener('click',()=>{const on=sourcePanel.classList.toggle('guides');guidesBtn.textContent=on?'Hide Guides':'Show Guides';});
+  resetBtn.addEventListener('click',()=>{
+    visited.clear();document.querySelectorAll('[data-item]').forEach(el=>el.classList.remove('active','visited'));
+    infoPanel.innerHTML='<div class="placeholder"><div class="info-number">?</div><h3>Select a source point</h3><p>Use a number beside the note or in the Source Index. The explanation will appear here while the original document remains visible.</p></div>';
+    sourcePanel.classList.add('guides');guidesBtn.textContent='Hide Guides';zoomed=false;sourceStage.style.width='100%';zoomBtn.textContent='Zoom to 125%';sourceViewport.scrollLeft=0;sourceViewport.scrollTop=0;updateProgress();
+  });
+  const modal=document.getElementById('modal'),modalImg=document.getElementById('modalImg'),modalCaption=document.getElementById('modalCaption'),modalClose=document.getElementById('modalClose');
+  let lastFocus=null;
+  document.querySelectorAll('.zoom-photo').forEach(btn=>btn.addEventListener('click',()=>{lastFocus=btn;modalImg.src=btn.dataset.src;modalImg.alt=btn.querySelector('img').alt;modalCaption.textContent=btn.dataset.caption||'';modal.classList.add('open');modalClose.focus();}));
+  function closeModal(){modal.classList.remove('open');modalImg.src='';if(lastFocus)lastFocus.focus();}
+  modalClose.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+  const answers={q1:'b',q2:'a',q3:'c'},form=document.getElementById('quizForm'),score=document.getElementById('score');
+  function clearFeedbackFor(card){card.querySelectorAll('.option').forEach(o=>o.classList.remove('selected-correct','selected-incorrect'));}
+  form.addEventListener('submit',e=>{
+    e.preventDefault();let correct=0;
+    for(let i=1;i<=3;i++){
+      const key='q'+i,card=form.querySelector(`.qcard[data-q="${i}"]`),selected=form.querySelector(`input[name="${key}"]:checked`),fb=document.getElementById('f'+i);
+      clearFeedbackFor(card);fb.className='feedback';
+      if(!selected){fb.textContent='Choose an answer before checking this question.';fb.classList.add('missing');continue;}
+      if(selected.value===answers[key]){correct++;fb.textContent='✓ Correct';fb.classList.add('correct');}
+      else{fb.textContent='✗ Incorrect — review the order or source analysis and try again.';fb.classList.add('incorrect');}
+    }
+    score.textContent=`${correct} out of 3 correct`;
+  });
+  document.getElementById('clearQuiz').addEventListener('click',()=>{form.reset();for(let i=1;i<=3;i++){const card=form.querySelector(`.qcard[data-q="${i}"]`),fb=document.getElementById('f'+i);clearFeedbackFor(card);fb.textContent='';fb.className='feedback';}score.textContent='';});
+  updateProgress();
+})();
+</script>
+</body>
+</html>
